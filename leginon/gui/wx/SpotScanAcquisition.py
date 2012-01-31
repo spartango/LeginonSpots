@@ -87,7 +87,18 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 		
 		# label
 		label = wx.StaticText(self, -1, 'Spot Size:')
-		
+		szspotsize.Add(label, (0, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+
+		label = wx.StaticText(self, -1, 'Spot Spacing:')
+		szspotsize.Add(label, (1, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+
+		label = wx.StaticText(self, -1, 'nm')
+		szspotsize.Add(label, (1, 2), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+
+		label = wx.StaticText(self, -1, 'Spot Count:')
+		szspotsize.Add(label, (2, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+
+
 		# Text box for spotsize
 		self.widgets['spot size'] = IntEntry(self, -1,
 														min=1,
@@ -95,14 +106,25 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 														chars=4,
 														value='1')
 
-		# Add the label
-		szspotsize.Add(label, (0, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+		self.widgets['spot spacing'] = FloatEntry(self, -1,
+														min=1,
+														allownone=False,
+														chars=4,
+														value='1')
+
+		self.widgets['spot count'] = IntEntry(self, -1,
+														min=1,
+														allownone=False,
+														chars=4,
+														value='1')
 		# Add the widget
 		szspotsize.Add(self.widgets['spot size'], (0, 1), (1, 1),
 				wx.ALIGN_CENTER_VERTICAL)
-		# TODO: spot spacing
-		# TODO: spot pattern 
-
+		szspotsize.Add(self.widgets['spot spacing'], (1, 1), (1, 1),
+				wx.ALIGN_CENTER_VERTICAL)
+		szspotsize.Add(self.widgets['spot count'], (2, 1), (1, 1),
+				wx.ALIGN_CENTER_VERTICAL)
+		
 		# preset order
 		presets = self.node.presetsclient.getPresetNames()
 		self.widgets['preset order'] = EditPresetOrder(self, -1)
