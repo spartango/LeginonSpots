@@ -1,0 +1,599 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons
+END
+instrumentsetnew.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/instrumentsetnew.png
+END
+settings.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/settings.png
+END
+beamtiltget.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/beamtiltget.png
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/__init__.py
+END
+warning.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/warning.png
+END
+focuser.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/focuser.png
+END
+focus_sequence.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/focus_sequence.png
+END
+autofocus.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/autofocus.png
+END
+atlastarget.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/atlastarget.png
+END
+value.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/value.png
+END
+check.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/check.png
+END
+beamtiltset.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/beamtiltset.png
+END
+manualfocus.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/manualfocus.png
+END
+pause.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/pause.png
+END
+color.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/color.png
+END
+alignzlp.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/alignzlp.png
+END
+tiles.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/tiles.png
+END
+atlasmaker.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/atlasmaker.png
+END
+clicktargetfinder.png
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/clicktargetfinder.png
+END
+send_queue_out.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/send_queue_out.png
+END
+simulatetargetloop.png
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/simulatetargetloop.png
+END
+zoom.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/zoom.png
+END
+node.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/node.png
+END
+edit.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/edit.png
+END
+presets.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/presets.png
+END
+tilt_ruler.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/tilt_ruler.png
+END
+squarefinder.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/squarefinder.png
+END
+realgrid.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/realgrid.png
+END
+ruler.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/ruler.png
+END
+minus.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/minus.png
+END
+clock.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/clock.png
+END
+calculate.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/calculate.png
+END
+setup.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/setup.png
+END
+green.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/green.png
+END
+tiltaxis.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/tiltaxis.png
+END
+beamtilt.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/beamtilt.png
+END
+corrector.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/corrector.png
+END
+driftmanager.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/driftmanager.png
+END
+rotcenter.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/rotcenter.png
+END
+display.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/display.png
+END
+end.png
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/end.png
+END
+valueinverse.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/valueinverse.png
+END
+instrument.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/instrument.png
+END
+instrumentget.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/instrumentget.png
+END
+cam_ruler.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/cam_ruler.png
+END
+grayscale.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/grayscale.png
+END
+import.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/import.png
+END
+null.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/null.png
+END
+focusget.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/focusget.png
+END
+begin.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/begin.png
+END
+instrumentset.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/instrumentset.png
+END
+stop.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/stop.png
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/error.png
+END
+simulatetarget.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/simulatetarget.png
+END
+dose.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/dose.png
+END
+clear_queue.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/clear_queue.png
+END
+arrow.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/arrow.png
+END
+focusset.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/focusset.png
+END
+info.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/info.png
+END
+targetfilter.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/targetfilter.png
+END
+cleargrid.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/cleargrid.png
+END
+sine.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/sine.png
+END
+loop_play.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/loop_play.png
+END
+fftmaker.png
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/fftmaker.png
+END
+autoexposure.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/autoexposure.png
+END
+matrix.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/matrix.png
+END
+play.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/play.png
+END
+currentposition.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/currentposition.png
+END
+down.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/down.png
+END
+presetsbeam.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/presetsbeam.png
+END
+red.png
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/red.png
+END
+stagelocations.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/stagelocations.png
+END
+plus.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/plus.png
+END
+grid.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/grid.png
+END
+manualacquisition.png
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/manualacquisition.png
+END
+imagebrowser.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/imagebrowser.png
+END
+notes.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/notes.png
+END
+acquisition.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/acquisition.png
+END
+acquire.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/acquire.png
+END
+stop_queue.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/stop_queue.png
+END
+simulatetargetloopstop.png
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/simulatetargetloopstop.png
+END
+robotgridtray.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/robotgridtray.png
+END
+ellipse.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/ellipse.png
+END
+refresh.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/refresh.png
+END
+userinput.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/userinput.png
+END
+declare.png
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/declare.png
+END
+alignpresets.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/alignpresets.png
+END
+xy.png
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/xy.png
+END
+floppy.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/floppy.png
+END
+z.png
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/z.png
+END
+pixelsize.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/pixelsize.png
+END
+picker.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/picker.png
+END
+targetfinder.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/targetfinder.png
+END
+holefinder.png
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/holefinder.png
+END
+extractgrid.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/extractgrid.png
+END
+instrumentgetnew.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/instrumentgetnew.png
+END
+up.png
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/up.png
+END
+alpha.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/alpha.png
+END
+navigator.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/icons/navigator.png
+END

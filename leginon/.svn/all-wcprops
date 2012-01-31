@@ -1,0 +1,1091 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/myami/!svn/ver/16197/branches/myami-2.1/leginon
+END
+gonmodeler.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/gonmodeler.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/__init__.py
+END
+raster.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/raster.py
+END
+test1.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/test1.py
+END
+targetexample.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetexample.py
+END
+presetadjuster.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/presetadjuster.py
+END
+imageassessor.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/imageassessor.py
+END
+holetemplate.mrc
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/holetemplate.mrc
+END
+maskassessor.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/maskassessor.py
+END
+holefinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/15365/branches/myami-2.1/leginon/holefinder.py
+END
+update_userdata.sql
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/update_userdata.sql
+END
+clean.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/clean.py
+END
+caltransformer.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/caltransformer.py
+END
+configparser.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/configparser.py
+END
+calibrationclient.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/calibrationclient.py
+END
+getinstrumentclasses.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/getinstrumentclasses.py
+END
+dosecalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/dosecalibrator.py
+END
+webcam.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/webcam.py
+END
+beamtiltfixer.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/beamtiltfixer.py
+END
+setup.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/setup.py
+END
+compositetest.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/compositetest.py
+END
+application.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/application.py
+END
+unique.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/unique.py
+END
+localtransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/localtransport.py
+END
+syscheck.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/syscheck.py
+END
+importexport.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/importexport.py
+END
+tableau.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/tableau.py
+END
+rastertargetfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/rastertargetfilter.py
+END
+targetrepeater.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetrepeater.py
+END
+event.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/event.py
+END
+corrector2.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/corrector2.py
+END
+fftanalyzer.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/fftanalyzer.py
+END
+beamtiltimager.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/beamtiltimager.py
+END
+querystagepoints.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/querystagepoints.py
+END
+cameraclient.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/cameraclient.py
+END
+imodprocessor.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/imodprocessor.py
+END
+fftace.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/fftace.py
+END
+navigator.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/15051/branches/myami-2.1/leginon/navigator.py
+END
+player.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/player.py
+END
+targetfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetfilter.py
+END
+legpath
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/legpath
+END
+databinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/databinder.py
+END
+imageprocessorexample.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/imageprocessorexample.py
+END
+sampletargetfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/sampletargetfilter.py
+END
+matlabtargetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/matlabtargetfinder.py
+END
+allnodes.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/allnodes.py
+END
+rctacquisition.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/rctacquisition.py
+END
+MrcImagePlugin.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/MrcImagePlugin.py
+END
+tcptransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/tcptransport.py
+END
+project.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/project.py
+END
+changes-1.3
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/changes-1.3
+END
+timer.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/timer.py
+END
+leginonconfig.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/leginonconfig.py
+END
+socketstreamtransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/socketstreamtransport.py
+END
+acquisition.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/15119/branches/myami-2.1/leginon/acquisition.py
+END
+delapps.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/delapps.py
+END
+rasterfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/rasterfinder.py
+END
+montage.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/montage.py
+END
+tiltrotate.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/tiltrotate.py
+END
+houghcircle.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/houghcircle.py
+END
+legbackup.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/legbackup.py
+END
+watcher.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/watcher.py
+END
+tiltcorrector.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/tiltcorrector.py
+END
+plotmodel.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/plotmodel.py
+END
+fftmaker.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/fftmaker.py
+END
+speed.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/speed.py
+END
+holefinderback.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/holefinderback.py
+END
+projectdata.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/projectdata.py
+END
+test2.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/test2.py
+END
+beeper.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/beeper.py
+END
+beamtiltcalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/beamtiltcalibrator.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/README
+END
+gridentry.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/gridentry.py
+END
+matrixcalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/matrixcalibrator.py
+END
+robotatlastargetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/robotatlastargetfinder.py
+END
+maketemplate.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/maketemplate.py
+END
+workflow.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/workflow.py
+END
+scrippsrobotserver.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/scrippsrobotserver.py
+END
+gaussfit.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/gaussfit.py
+END
+lattice.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/lattice.py
+END
+presets.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/15483/branches/myami-2.1/leginon/presets.py
+END
+remotecall.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/remotecall.py
+END
+update16.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/update16.py
+END
+intensitycalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/intensitycalibrator.py
+END
+atlastargetmaker.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/atlastargetmaker.py
+END
+start.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14968/branches/myami-2.1/leginon/start.py
+END
+jahcfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/jahcfinder.py
+END
+emailnotification.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/emailnotification.py
+END
+modelinst.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/modelinst.py
+END
+dtfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/dtfinder.py
+END
+correctorclient.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/correctorclient.py
+END
+EM.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/EM.py
+END
+checkapps.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/checkapps.py
+END
+NumericImage.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/NumericImage.py
+END
+transformmanager.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/transformmanager.py
+END
+targetmaker.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetmaker.py
+END
+hl_example.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/hl_example.jpg
+END
+commonsteps.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/commonsteps.py
+END
+hough.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/hough.py
+END
+shortpath.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/shortpath.py
+END
+gridlabeler.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/gridlabeler.py
+END
+testtargetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/testtargetfinder.py
+END
+noderegistry.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/noderegistry.py
+END
+stigacquisition.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/stigacquisition.py
+END
+dbdatatest.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/dbdatatest.py
+END
+clicktargettransformer.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/clicktargettransformer.py
+END
+pixelsizecalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/pixelsizecalibrator.py
+END
+COPYRIGHT
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/COPYRIGHT
+END
+imageprocessor.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/imageprocessor.py
+END
+manualacquisition.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/manualacquisition.py
+END
+squarefinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/squarefinder.py
+END
+RAPTORsim
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/RAPTORsim
+END
+caustic.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/caustic.py
+END
+holedepthback.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/holedepthback.py
+END
+reference.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/reference.py
+END
+install-leginon.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/install-leginon.py
+END
+imagewatcher.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/imagewatcher.py
+END
+libCVwrapper.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/libCVwrapper.py
+END
+beamfixer.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/beamfixer.py
+END
+templatefinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/templatefinder.py
+END
+gonmodel.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/gonmodel.py
+END
+robot2.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/robot2.py
+END
+magcalibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/magcalibrator.py
+END
+instrument.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14914/branches/myami-2.1/leginon/instrument.py
+END
+alignmentmanager.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/alignmentmanager.py
+END
+manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/manager.py
+END
+regionfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/regionfinder.py
+END
+mosaic.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/mosaic.py
+END
+targetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetfinder.py
+END
+clickmaskmaker.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/clickmaskmaker.py
+END
+targetworkflow.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetworkflow.py
+END
+killstart
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/killstart
+END
+version.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/15325/branches/myami-2.1/leginon/version.py
+END
+start-leginon.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/start-leginon.py
+END
+runRaptor.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/runRaptor.py
+END
+ice.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/ice.py
+END
+launcher.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/launcher.py
+END
+makeatlas.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/makeatlas.py
+END
+driftmanager.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/driftmanager.py
+END
+targetwatcher.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targetwatcher.py
+END
+focuser.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/focuser.py
+END
+robot2nysbc.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/robot2nysbc.py
+END
+manualimageloader.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/manualimageloader.py
+END
+raptorprocessor.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/raptorprocessor.py
+END
+setup.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/setup.cfg
+END
+testrepeater.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/testrepeater.py
+END
+mosaictargetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/mosaictargetfinder.py
+END
+holedepth.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/holedepth.py
+END
+tutorial
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/tutorial
+END
+mrc2jpg2out.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/mrc2jpg2out.py
+END
+jahcfinderback.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/jahcfinderback.py
+END
+MANIFEST.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/MANIFEST.in
+END
+targethandler.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/targethandler.py
+END
+killtargets.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/16197/branches/myami-2.1/leginon/killtargets.py
+END
+jpeg.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/jpeg.py
+END
+upload_example.txt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/upload_example.txt
+END
+newtargetfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/newtargetfinder.py
+END
+mosaicsectionfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/mosaicsectionfinder.py
+END
+align.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/align.py
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/LICENSE
+END
+centertargetfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/centertargetfilter.py
+END
+intensitymonitor.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/intensitymonitor.py
+END
+example.m
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/example.m
+END
+corrector.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/15842/branches/myami-2.1/leginon/corrector.py
+END
+autoexposure.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/autoexposure.py
+END
+mrc2jpg.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/mrc2jpg.py
+END
+datasync.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/datasync.py
+END
+exposurefixer.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/exposurefixer.py
+END
+quantifoil.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/quantifoil.py
+END
+robotserver.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/robotserver.py
+END
+libcvcaller.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/libcvcaller.py
+END
+calibrator.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/calibrator.py
+END
+node.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/node.py
+END
+legoptparse.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/legoptparse.py
+END
+leginondata.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/15044/branches/myami-2.1/leginon/leginondata.py
+END
+robot.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/robot.py
+END
+testdb.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/testdb.py
+END
+killlauncher
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/killlauncher
+END
+datatransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/datatransport.py
+END
+sq_example.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/sq_example.jpg
+END
+polygon.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/myami/!svn/ver/14869/branches/myami-2.1/leginon/polygon.py
+END
