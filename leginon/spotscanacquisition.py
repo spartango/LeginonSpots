@@ -23,24 +23,22 @@ class SpotScanAcquisition(acquisition.Acquisition):
         # Spot series info
         # TODO
 
-    def _setImageFilename(self, imagedata):
-        setImageFilename(imagedata)
-        # Spot series filenames
-        # TODO
+    # def _setImageFilename(self, imagedata):
+    #     setImageFilename(imagedata)
+    #     # Spot series filenames
+    #     # TODO
 
-    def _processTargetList(self, targetlist):
-        # Check the target list
-        targets = self.researchTargets(list=targetlist, status='new')
-        if not targets:
-            self.reportTargetListDone(tilt0targetlist, 'success')
-            return
+    # def _processTargetList(self, targetlist):
+    #     # Check the target list
+    #     targets = self.researchTargets(list=targetlist, status='new')
+    #     if not targets:
+    #         self.reportTargetListDone(targetlist, 'success')
+    #         return
 
-        # Get the spot size parameters
+    #     # Get the spot size parameters
 
-        # Generate a sub target list
+    #     # Generate a sub target list
 
-        # set the spot size
+    #     # set the spot size
 
-        # Do a standard acquire for the new targetset
-
-        pass
+    #     # Do a standard acquire for the new targetset
