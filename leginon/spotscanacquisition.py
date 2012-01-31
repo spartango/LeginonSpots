@@ -10,18 +10,24 @@ import pyami.quietscipy
 from scipy import ndimage
 
 class SpotScanAcquisition(acquisition.Acquisition):
+    panelclass = gui.wx.SpotScanAcquisition.Panel
+    settingsclass = leginondata.AcquisitionSettingsData
+    defaultsettings = acquisition.Acquisition.defaultsettings
+
+    eventinputs = acquisition.Acquisition.eventinputs
+    eventoutputs = acquisition.Acquisition.eventoutputs
     
     def __init__(self, id, session, managerlocation, **kwargs):
         acquisition.Acquisition.__init__(self, id, session, managerlocation, **kwargs)
         # Spot series info
         # TODO
 
-    def setImageFilename(self, imagedata):
+    def _setImageFilename(self, imagedata):
         setImageFilename(imagedata)
         # Spot series filenames
         # TODO
 
-    def processTargetList(self, targetlist):
+    def _processTargetList(self, targetlist):
         # Check the target list
         targets = self.researchTargets(list=targetlist, status='new')
         if not targets:

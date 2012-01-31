@@ -89,6 +89,9 @@ noderegistry.registerNodeClass(Focuser,classtype)
 from rctacquisition import RCTAcquisition
 noderegistry.registerNodeClass(RCTAcquisition,classtype)
 
+from spotscanacquisition import SpotScanAcquisition
+noderegistry.registerNodeClass(SpotScanAcquisition,classtype)
+
 from tomography.tomographysimu import TomographySimu
 noderegistry.registerNodeClass(TomographySimu,classtype)
 
