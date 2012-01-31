@@ -7,6 +7,7 @@ import numpy
 import time
 import math
 import pyami.quietscipy
+import gui.wx.SpotScanAcquisition
 from scipy import ndimage
 
 class SpotScanAcquisition(acquisition.Acquisition):
@@ -16,7 +17,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
     eventinputs = acquisition.Acquisition.eventinputs
     eventoutputs = acquisition.Acquisition.eventoutputs
-    
+
     def __init__(self, id, session, managerlocation, **kwargs):
         acquisition.Acquisition.__init__(self, id, session, managerlocation, **kwargs)
         # Spot series info
