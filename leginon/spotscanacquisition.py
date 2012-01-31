@@ -2,7 +2,6 @@
 
 import leginondata
 import acquisition
-import gui.wx.RCTAcquisition
 import libCVwrapper
 import numpy
 import time

@@ -1,7 +1,7 @@
 10
 
 dir
-16226
+16298
 http://ami.scripps.edu/svn/myami/branches/myami-2.1/leginon
 http://ami.scripps.edu/svn/myami
 
@@ -505,40 +505,6 @@ has-props
 
 523
 
-getinstrumentclasses.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-7c385ee74333b2ad58bcc6bdab88f575
-2009-02-13T21:16:30.940328Z
-10470
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-427
-
 calibrationclient.py
 file
 
@@ -572,6 +538,40 @@ has-props
 
 
 63319
+
+getinstrumentclasses.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+7c385ee74333b2ad58bcc6bdab88f575
+2009-02-13T21:16:30.940328Z
+10470
+pulokas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+427
 
 dosecalibrator.py
 file
@@ -709,6 +709,9 @@ pulokas
 
 1168
 
+tomography
+dir
+
 compositetest.py
 file
 
@@ -742,9 +745,6 @@ has-props
 
 
 3694
-
-tomography
-dir
 
 application.py
 file
@@ -848,40 +848,6 @@ has-props
 
 1262
 
-importexport.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-7f55d8df252d0c338964e07d7f3d0abf
-2008-01-09T20:55:36.000000Z
-7325
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12261
-
 syscheck.py
 file
 
@@ -916,17 +882,18 @@ has-props
 
 8771
 
-rastertargetfilter.py
+importexport.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-85371a56c2e696c71d81998e6772743b
-2010-09-22T21:00:32.809347Z
-14817
-acheng
+7f55d8df252d0c338964e07d7f3d0abf
+2008-01-09T20:55:36.000000Z
+7325
+pulokas
+has-props
 
 
 
@@ -947,8 +914,7 @@ acheng
 
 
 
-
-8635
+12261
 
 tableau.py
 file
@@ -983,6 +949,40 @@ acheng
 
 
 2966
+
+rastertargetfilter.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+85371a56c2e696c71d81998e6772743b
+2010-09-22T21:00:32.809347Z
+14817
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8635
 
 targetrepeater.py
 file
@@ -2078,40 +2078,6 @@ pulokas
 
 2881
 
-watcher.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-fbdb45ae3573ed15e166feb450934faf
-2009-11-17T00:26:00.422638Z
-12649
-acheng
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1279
-
 legbackup.py
 file
 
@@ -2146,16 +2112,16 @@ has-props
 
 3181
 
-tiltcorrector.py
+watcher.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-5df20bcccfb7648f83b1ca3f5a480c4f
-2009-06-24T17:48:20.368541Z
-11582
+fbdb45ae3573ed15e166feb450934faf
+2009-11-17T00:26:00.422638Z
+12649
 acheng
 has-props
 
@@ -2178,41 +2144,7 @@ has-props
 
 
 
-12134
-
-fftmaker.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-f2d53d37a905900094576ac9da9967d9
-2010-10-05T22:47:45.361326Z
-14862
-acheng
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4564
+1279
 
 plotmodel.py
 file
@@ -2248,17 +2180,17 @@ has-props
 
 3471
 
-speed.py
+fftmaker.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-38d17b56def8081a2f00b4e0fc175428
-2010-01-26T19:13:03.956923Z
-12888
-pulokas
+f2d53d37a905900094576ac9da9967d9
+2010-10-05T22:47:45.361326Z
+14862
+acheng
 has-props
 
 
@@ -2280,7 +2212,75 @@ has-props
 
 
 
-6745
+4564
+
+tiltcorrector.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+5df20bcccfb7648f83b1ca3f5a480c4f
+2009-06-24T17:48:20.368541Z
+11582
+acheng
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12134
+
+projectdata.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+9c7fd16ce53f7a5460211171eb97bbe0
+2010-05-12T06:18:10.860213Z
+13881
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1495
 
 holefinderback.py
 file
@@ -2316,17 +2316,18 @@ has-props
 
 14515
 
-projectdata.py
+speed.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-9c7fd16ce53f7a5460211171eb97bbe0
-2010-05-12T06:18:10.860213Z
-13881
-acheng
+38d17b56def8081a2f00b4e0fc175428
+2010-01-26T19:13:03.956923Z
+12888
+pulokas
+has-props
 
 
 
@@ -2347,8 +2348,7 @@ acheng
 
 
 
-
-1495
+6745
 
 test2.py
 file
@@ -2486,40 +2486,6 @@ pulokas
 
 1317
 
-gridentry.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-e0827bce7fd2b1e2d870778274a29a2d
-2010-05-06T17:56:05.671889Z
-13713
-vossman
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3477
-
 matrixcalibrator.py
 file
 
@@ -2554,17 +2520,18 @@ has-props
 
 8924
 
-robotatlastargetfinder.py
+gridentry.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-cb62612d65650d2956529c0576655c80
-2009-04-23T00:21:24.832286Z
-11203
-pulokas
+e0827bce7fd2b1e2d870778274a29a2d
+2010-05-06T17:56:05.671889Z
+13713
+vossman
+has-props
 
 
 
@@ -2585,8 +2552,7 @@ pulokas
 
 
 
-
-29546
+3477
 
 maketemplate.py
 file
@@ -2621,6 +2587,40 @@ has-props
 
 
 1509
+
+robotatlastargetfinder.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+cb62612d65650d2956529c0576655c80
+2009-04-23T00:21:24.832286Z
+11203
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+29546
 
 workflow.py
 file
@@ -2690,17 +2690,17 @@ has-props
 
 1697
 
-gaussfit.py
+presets.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-ad02af262220b4e4cffdf6734123cd74
-2008-07-25T22:18:58.601280Z
-8483
-pulokas
+7fc2a87c26b22ffe3092c5a0f6996e67
+2011-03-08T05:20:02.639331Z
+15483
+acheng
 has-props
 
 
@@ -2722,7 +2722,7 @@ has-props
 
 
 
-1303
+60629
 
 lattice.py
 file
@@ -2758,17 +2758,17 @@ has-props
 
 5493
 
-presets.py
+gaussfit.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-7fc2a87c26b22ffe3092c5a0f6996e67
-2011-03-08T05:20:02.639331Z
-15483
-acheng
+ad02af262220b4e4cffdf6734123cd74
+2008-07-25T22:18:58.601280Z
+8483
+pulokas
 has-props
 
 
@@ -2790,7 +2790,7 @@ has-props
 
 
 
-60629
+1303
 
 remotecall.py
 file
@@ -2826,40 +2826,6 @@ pulokas
 
 13515
 
-update16.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-7338ced9151541cef21224be31940a7f
-2009-02-26T22:43:35.507987Z
-10662
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1663
-
 intensitycalibrator.py
 file
 
@@ -2893,6 +2859,40 @@ has-props
 
 
 2881
+
+update16.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+7338ced9151541cef21224be31940a7f
+2009-02-26T22:43:35.507987Z
+10662
+pulokas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1663
 
 atlastargetmaker.py
 file
@@ -2928,40 +2928,6 @@ has-props
 
 7083
 
-start.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-7a387d9c3215d7589437998117f12af9
-2010-10-29T21:52:03.009296Z
-14968
-acheng
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-901
-
 jahcfinder.py
 file
 
@@ -2996,17 +2962,17 @@ has-props
 
 17009
 
-emailnotification.py
+start.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-448484f42283aed05b6f211646882401
-2004-12-17T23:24:40.000000Z
-3521
-suloway
+7a387d9c3215d7589437998117f12af9
+2010-10-29T21:52:03.009296Z
+14968
+acheng
 has-props
 
 
@@ -3028,7 +2994,7 @@ has-props
 
 
 
-6780
+901
 
 modelinst.py
 file
@@ -3064,6 +3030,40 @@ has-props
 
 355
 
+emailnotification.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+448484f42283aed05b6f211646882401
+2004-12-17T23:24:40.000000Z
+3521
+suloway
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6780
+
 dtfinder.py
 file
 
@@ -3097,74 +3097,6 @@ has-props
 
 
 9506
-
-correctorclient.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-0679d4c7ffa241dfd9c5e66246591ec4
-2010-10-02T00:35:16.475180Z
-14855
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12502
-
-EM.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-5288b2f4bd63345c510150c8d9a97a72
-2010-01-26T19:13:03.956923Z
-12888
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6353
 
 checkapps.py
 file
@@ -3200,6 +3132,74 @@ has-props
 
 1288
 
+EM.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+5288b2f4bd63345c510150c8d9a97a72
+2010-01-26T19:13:03.956923Z
+12888
+pulokas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6353
+
+correctorclient.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+0679d4c7ffa241dfd9c5e66246591ec4
+2010-10-02T00:35:16.475180Z
+14855
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12502
+
 NumericImage.py
 file
 
@@ -3234,17 +3234,17 @@ has-props
 
 5858
 
-transformmanager.py
+hl_example.jpg
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-c71a2119e444dc0e6a805ce209481df4
-2010-07-22T21:25:20.281309Z
-14549
-pulokas
+3902689f6927bae810b10e35c8d134ac
+2008-03-10T15:44:58.236702Z
+7768
+acheng
 has-props
 
 
@@ -3266,7 +3266,7 @@ has-props
 
 
 
-20472
+45777
 
 targetmaker.py
 file
@@ -3302,17 +3302,17 @@ has-props
 
 11072
 
-hl_example.jpg
+transformmanager.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-3902689f6927bae810b10e35c8d134ac
-2008-03-10T15:44:58.236702Z
-7768
-acheng
+c71a2119e444dc0e6a805ce209481df4
+2010-07-22T21:25:20.281309Z
+14549
+pulokas
 has-props
 
 
@@ -3334,7 +3334,7 @@ has-props
 
 
 
-45777
+20472
 
 commonsteps.py
 file
@@ -3404,40 +3404,6 @@ has-props
 
 8223
 
-shortpath.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-5b3c7e2b90ce5fd4f68145cd19a39a11
-2008-03-06T23:15:48.867249Z
-7751
-vossman
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10562
-
 gridlabeler.py
 file
 
@@ -3472,17 +3438,17 @@ acheng
 
 794
 
-testtargetfinder.py
+shortpath.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-fdd786cdefed70916805a06b225b1a7b
-2010-09-20T21:06:44.480227Z
-14808
-acheng
+5b3c7e2b90ce5fd4f68145cd19a39a11
+2008-03-06T23:15:48.867249Z
+7751
+vossman
 
 
 
@@ -3504,7 +3470,7 @@ acheng
 
 
 
-2545
+10562
 
 noderegistry.py
 file
@@ -3540,18 +3506,17 @@ has-props
 
 763
 
-stigacquisition.py
+testtargetfinder.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-1a57989ae0e16cb91e561bef5f5fce60
-2007-09-12T21:18:46.000000Z
-6323
-pulokas
-has-props
+fdd786cdefed70916805a06b225b1a7b
+2010-09-20T21:06:44.480227Z
+14808
+acheng
 
 
 
@@ -3572,18 +3537,19 @@ has-props
 
 
 
-1507
+
+2545
 
-dbdatatest.py
+pixelsizecalibrator.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-e3b09b5934500d2a17beaaa406b41239
-2009-02-13T20:50:45.608742Z
-10460
+630ae0f98bfbd5081fa9afc263d708dc
+2009-02-13T21:00:48.074920Z
+10465
 pulokas
 has-props
 
@@ -3606,7 +3572,7 @@ has-props
 
 
 
-3906
+5018
 
 clicktargettransformer.py
 file
@@ -3642,16 +3608,16 @@ has-props
 
 14439
 
-pixelsizecalibrator.py
+dbdatatest.py
 file
 
 
 
 
 2011-09-21T21:06:14.000000Z
-630ae0f98bfbd5081fa9afc263d708dc
-2009-02-13T21:00:48.074920Z
-10465
+e3b09b5934500d2a17beaaa406b41239
+2009-02-13T20:50:45.608742Z
+10460
 pulokas
 has-props
 
@@ -3674,7 +3640,41 @@ has-props
 
 
 
-5018
+3906
+
+stigacquisition.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+1a57989ae0e16cb91e561bef5f5fce60
+2007-09-12T21:18:46.000000Z
+6323
+pulokas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1507
 
 COPYRIGHT
 file
@@ -3880,6 +3880,9 @@ has-props
 
 6127
 
+gui
+dir
+
 holedepthback.py
 file
 
@@ -3913,9 +3916,6 @@ has-props
 
 
 17133
-
-gui
-dir
 
 reference.py
 file
@@ -3985,40 +3985,6 @@ pulokas
 
 1417
 
-imagewatcher.py
-file
-
-
-
-
-2011-09-21T21:06:14.000000Z
-4007ed14a6863baafc2d27f798f98ac4
-2009-08-31T21:59:28.583810Z
-12159
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2154
-
 libCVwrapper.py
 file
 
@@ -4052,6 +4018,40 @@ has-props
 
 
 6872
+
+imagewatcher.py
+file
+
+
+
+
+2011-09-21T21:06:14.000000Z
+4007ed14a6863baafc2d27f798f98ac4
+2009-08-31T21:59:28.583810Z
+12159
+pulokas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2154
 
 beamfixer.py
 file

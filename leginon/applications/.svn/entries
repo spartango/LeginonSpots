@@ -1,7 +1,7 @@
 10
 
 dir
-16226
+16298
 http://ami.scripps.edu/svn/myami/branches/myami-2.1/leginon/applications
 http://ami.scripps.edu/svn/myami
 
@@ -60,40 +60,6 @@ acheng
 
 45228
 
-__init__.py
-file
-
-
-
-
-2011-09-21T21:06:08.000000Z
-e73ad15b73ab44219aea1c8803771ce8
-2010-07-21T00:16:37.996572Z
-14526
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-312
-
 Robot_MSI-Screen_1st_Pass.xml
 file
 
@@ -127,6 +93,40 @@ acheng
 
 
 34412
+
+__init__.py
+file
+
+
+
+
+2011-09-21T21:06:08.000000Z
+e73ad15b73ab44219aea1c8803771ce8
+2010-07-21T00:16:37.996572Z
+14526
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+312
 
 MSI-T.xml
 file
@@ -332,40 +332,6 @@ acheng
 
 42737
 
-Robot_MSI-Screen_Evaluation.xml
-file
-
-
-
-
-2011-09-21T21:06:08.000000Z
-d978ebc037d76457b991e4d7e838ba60
-2010-06-07T21:33:12.014497Z
-14298
-acheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4835
-
 MSI-Tomography2.xml
 file
 
@@ -399,6 +365,40 @@ acheng
 
 
 47651
+
+Robot_MSI-Screen_Evaluation.xml
+file
+
+
+
+
+2011-09-21T21:06:08.000000Z
+d978ebc037d76457b991e4d7e838ba60
+2010-06-07T21:33:12.014497Z
+14298
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4835
 
 Robot_MSI-Screen_2nd_Pass.xml
 file
