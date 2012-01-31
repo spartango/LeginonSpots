@@ -24,9 +24,9 @@ class SpotScanAcquisition(acquisition.Acquisition):
     eventoutputs = acquisition.Acquisition.eventoutputs
 
     defaultsettings.update({
-        'spot size':    '1',
-        'spot spacing': '1', 
-        'spot count':   '3'
+        'spot size':    5,
+        'spot spacing': 1.0, 
+        'spot count':   3
         })
 
     def __init__(self, id, session, managerlocation, **kwargs):
