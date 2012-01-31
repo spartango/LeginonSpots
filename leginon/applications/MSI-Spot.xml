@@ -3,7 +3,7 @@
 - Application XML-Dump
 - http://ami.scripps.edu/ 
 -
-- Application :MSI-T2 (2.1)
+- Application :MSI-Spot (2.1)
 - Version     :0
 - Date : 03/18/2011
 -
@@ -112,7 +112,7 @@
     <sqltable name="ApplicationData" >
         <field name="DEF_id" >723</field>
         <field name="DEF_timestamp" >2011-03-18 13:59:40</field>
-        <field name="name" >MSI-T2 (2.1)</field>
+        <field name="name" >MSI-Spot (2.1)</field>
         <field name="version" >0</field>
     </sqltable>
   <!-- BindingSpecData -->
