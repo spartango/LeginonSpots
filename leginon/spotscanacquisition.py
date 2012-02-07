@@ -45,6 +45,34 @@ class SpotScanAcquisition(acquisition.Acquisition):
         dims = target['image']['camera']['dimension']
         return dims['y'],dims['x']
 
+    def simulateTarget(self):
+        self.setStatus('processing')
+        currentpreset = self.presetsclient.getCurrentPreset()
+        if currentpreset is None:
+            try:
+                self.validatePresets()
+            except InvalidPresetsSequence:
+                self.logger.error('Configure at least one preset in the settings for this node.')
+                return
+            presetnames = self.settings['preset order']
+            currentpreset = self.presetsclient.getPresetByName(presetnames[0])
+        targetdata = self.newSimulatedTarget(preset=currentpreset,grid=self.grid)
+        self.publish(targetdata, database=True)
+        ## change to 'processing' just like targetwatcher does
+        proctargetdata = self.reportTargetStatus(targetdata, 'processing')
+        try:
+            ret = self.processTargetList(targetlist=[proctargetdata])
+        except BadImageStatsPause, e:
+            ''' FIX ME!!! need to pause and allow repeat? '''
+            self.logger.error('processing target failed: %s' %e)
+            ret = 'aborted'
+        except BadImageStatsAbort, e:
+            self.logger.error('processing target failed: %s' %e)
+            ret = 'aborted'
+        self.reportTargetStatus(proctargetdata, 'done')
+        self.logger.info('Done with simulated target, status: %s (repeat will not be honored)' % (ret,))
+        self.setStatus('idle')
+
     def processTargetList(self, targetlist):
         # Check the target list
         targets = self.researchTargets(list=targetlist, status='new')
@@ -85,6 +113,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
             self.logger.info('Subtargets for '+center_x+', '+center_y)
             self.logger.info('Interval: '+start_x+', '+start_y+' -> '+end_x+', '+end_y)
+        
         #   Generate new coordinates around point
             for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
