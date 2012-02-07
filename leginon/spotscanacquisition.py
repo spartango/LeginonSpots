@@ -65,7 +65,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
         # Generate a sub target list
         newtargets = []
         # For each target
-        for target in targetlist
+        for target in targetlist:
 
         #   Bounding box
             bound_x, bound_y = targetShape(target)
@@ -81,8 +81,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
             end_y = center_y + (spotcount/2) * spotspacing
 
         #   Generate new coordinates around point
-            for point_x in range(start_x, end_x, spotspacing)# left bound to right bound
-                for point_y in range(start_y, end_y, spotspacing) # top to bottom bound
+            for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
+                for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
                     # Check that coordinates are in frame
                     if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
@@ -97,4 +97,3 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
         # Call processTargetList
         acquisition.Acquisition.processTargetList(newTargetList)
-
