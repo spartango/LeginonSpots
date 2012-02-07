@@ -10,10 +10,6 @@ import pyami.quietscipy
 import gui.wx.SpotScanAcquisition
 from scipy import ndimage
 
-def targetShape(target):
-    dims = target['image']['camera']['dimension']
-    return dims['y'],dims['x']
-
 
 class SpotScanAcquisition(acquisition.Acquisition):
     panelclass = gui.wx.SpotScanAcquisition.Panel
@@ -39,6 +35,16 @@ class SpotScanAcquisition(acquisition.Acquisition):
         # Spot series filenames
         # TODO
 
+    def targetPoint(target):
+        return target['delta row'],target['delta column']
+
+    def targetPoints(targets):
+        return map(targetPoint, targets)
+
+    def targetShape(target):
+        dims = target['image']['camera']['dimension']
+        return dims['y'],dims['x']
+
     def processTargetList(self, targetlist):
         # Check the target list
         targets = self.researchTargets(list=targetlist, status='new')
@@ -57,10 +63,29 @@ class SpotScanAcquisition(acquisition.Acquisition):
             return
 
         # Generate a sub target list
+        newtargets = []
         # For each target
+        for target in targetlist:
         #   Grab coordinates
+            center_x, center_y = targetPoint(target)
+
+        #   Corner points
+            start_x = center_x - (spotcount/2) * spotspacing
+            start_y = center_y - (spotcount/2) * spotspacing
+
+            end_x = center_x + (spotcount/2) * spotspacing
+            end_y = center_y + (spotcount/2) * spotspacing
+
         #   Generate new coordinates around point
-        #   Add to new Target list
+            for point_x in range(start_x, end_x, spotspacing)# left bound to right bound
+                for point_y in range(start_y, end_y, spotspacing) # top to bottom bound
+                    sub_target = leginondata.AcquisitionImageTargetData(initializer=target)
+                    sub_target['delta row']    = point_x
+                    sub_target['delta column'] = point_y
+
+        #       Add to new Target list
+        #       Check that it's in the camera frame
+                new_targets.append(sub_target)
 
         # set the spot size
         self.instrument.tem['spot size'] = spotsize
