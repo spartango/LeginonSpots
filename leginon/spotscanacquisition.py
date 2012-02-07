@@ -134,6 +134,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         sub_target['delta row']    = point_x
                         sub_target['delta column'] = point_y
 
+                        self.logger.info('subtarget -> %f, %f' % (point_x, point_y))
+
                         if subtarget is not None and subtarget['type'] != 'simulated' and self.settings['adjust for transform'] != 'no':
                             if self.settings['drift between'] and self.goodnumber > 0:
                                 self.declareDrift('between targets')
