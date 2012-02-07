@@ -121,8 +121,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
             end_x = center_x + (spotcount/2) * spotspacing
             end_y = center_y + (spotcount/2) * spotspacing
 
-            self.logger.info('Subtargets for '+center_x+', '+center_y)
-            self.logger.info('Interval: '+start_x+', '+start_y+' -> '+end_x+', '+end_y)
+            self.logger.info(('Subtargets for %f, %f' % (center_x, center_y)))
+            self.logger.info(('Interval: %f, %f  -> %f, %f' % (start_x, start_y, end_x, end_y)))
         
         #   Generate new coordinates around point
             for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
