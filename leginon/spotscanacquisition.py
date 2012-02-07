@@ -10,6 +10,24 @@ import pyami.quietscipy
 import gui.wx.SpotScanAcquisition
 from scipy import ndimage
 
+import targetwatcher
+import event
+import calibrationclient
+import presets
+import copy
+import threading
+import node
+import instrument
+import gui.wx.Acquisition
+import gui.wx.Presets
+import navigator
+import numpy
+import math
+from pyami import arraystats, imagefun, ordereddict
+import emailnotification
+import leginonconfig
+import gridlabeler
+
 
 class SpotScanAcquisition(acquisition.Acquisition):
     panelclass = gui.wx.SpotScanAcquisition.Panel
