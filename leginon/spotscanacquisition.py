@@ -151,6 +151,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         except acquisition.InvalidStagePosition:
                             return 'invalid'
 
+                        presetdata = self.presetsclient.getPresetByName(newpresetname)
+                        
                         self.instrument.tem.SpotSize = spotsize
 
                         ### acquire film or CCD
