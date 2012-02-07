@@ -35,13 +35,13 @@ class SpotScanAcquisition(acquisition.Acquisition):
     #    TODO
 
     # Utilities
-    def targetPoint(target):
+    def targetPoint(self, target):
         return target['delta row'],target['delta column']
 
-    def targetPoints(targets):
+    def targetPoints(self, targets):
         return map(targetPoint, targets)
 
-    def targetShape(target):
+    def targetShape(self, target):
         dims = target['image']['camera']['dimension']
         return dims['y'],dims['x']
 
