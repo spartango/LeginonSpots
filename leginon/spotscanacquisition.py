@@ -42,6 +42,9 @@ class SpotScanAcquisition(acquisition.Acquisition):
         return map(targetPoint, targets)
 
     def targetShape(self, target):
+        print 'Image: ', target['image']
+        print 'Camera: ', target['image']['camera']
+        
         dims = target['image']['camera']['dimension']
         return dims['y'],dims['x']
 
