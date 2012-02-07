@@ -10,25 +10,6 @@ import pyami.quietscipy
 import gui.wx.SpotScanAcquisition
 from scipy import ndimage
 
-import targetwatcher
-import event
-import calibrationclient
-import presets
-import copy
-import threading
-import node
-import instrument
-import gui.wx.Acquisition
-import gui.wx.Presets
-import navigator
-import numpy
-import math
-from pyami import arraystats, imagefun, ordereddict
-import emailnotification
-import leginonconfig
-import gridlabeler
-
-
 class SpotScanAcquisition(acquisition.Acquisition):
     panelclass = gui.wx.SpotScanAcquisition.Panel
     settingsclass = leginondata.AcquisitionSettingsData
@@ -78,15 +59,9 @@ class SpotScanAcquisition(acquisition.Acquisition):
         self.publish(targetdata, database=True)
         ## change to 'processing' just like targetwatcher does
         proctargetdata = self.reportTargetStatus(targetdata, 'processing')
-        try:
-            ret = self.processTargetList(targetlist=[proctargetdata])
-        except BadImageStatsPause, e:
-            ''' FIX ME!!! need to pause and allow repeat? '''
-            self.logger.error('processing target failed: %s' %e)
-            ret = 'aborted'
-        except BadImageStatsAbort, e:
-            self.logger.error('processing target failed: %s' %e)
-            ret = 'aborted'
+
+        ret = self.processTargetList(targetlist=[proctargetdata])
+   
         self.reportTargetStatus(proctargetdata, 'done')
         self.logger.info('Done with simulated target, status: %s (repeat will not be honored)' % (ret,))
         self.setStatus('idle')
