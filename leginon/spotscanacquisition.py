@@ -12,7 +12,7 @@ from scipy import ndimage
 
 class SpotScanAcquisition(acquisition.Acquisition):
     panelclass = gui.wx.SpotScanAcquisition.Panel
-    settingsclass = leginondata.AcquisitionSettingsData
+    settingsclass = leginondata.SpotScanAcquisitionSettingsData
     defaultsettings = acquisition.Acquisition.defaultsettings
 
     eventinputs = acquisition.Acquisition.eventinputs
