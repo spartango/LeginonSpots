@@ -52,7 +52,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
         if currentpreset is None:
             try:
                 self.validatePresets()
-            except InvalidPresetsSequence:
+            except acquisition.InvalidPresetsSequence:
                 self.logger.error('Configure at least one preset in the settings for this node.')
                 return
             presetnames = self.settings['preset order']
@@ -78,7 +78,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
         try:
             self.validatePresets()
-        except InvalidPresetsSequence, e:
+        except acquisition.InvalidPresetsSequence, e:
             if targetdata is None or targetdata['type'] == 'simulated':
                 ## don't want to repeat in this case
                 self.logger.error(str(e))
@@ -145,7 +145,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         ### determine how to move to target
                         try:
                             emtarget = self.targetToEMTargetData(subtarget)
-                        except InvalidStagePosition:
+                        except acquisition.InvalidStagePosition:
                             return 'invalid'
 
                         presetdata = self.presetsclient.getPresetByName(newpresetname)
