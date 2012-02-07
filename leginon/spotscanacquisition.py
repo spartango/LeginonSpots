@@ -42,11 +42,11 @@ class SpotScanAcquisition(acquisition.Acquisition):
         return map(targetPoint, targets)
 
     def targetShape(self, target):
-        print 'Image: ', target['image']
-        print 'Camera: ', target['image']['camera']
-        
-        dims = target['image']['camera']['dimension']
-        return dims['y'],dims['x']
+        if target['image'] is None:
+            (4096, 4096)
+        else:
+            dims = target['image']['camera']['dimension']
+            return dims['y'],dims['x']
 
     # Overrides
     def simulateTarget(self):
