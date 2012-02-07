@@ -108,10 +108,10 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
             # Generate rastered points
             # Bounding box from camera frame
-            bound_x, bound_y = targetShape(targetdata)
+            bound_x, bound_y = self.targetShape(targetdata)
 
         #   Grab coordinates for the target
-            center_x, center_y = targetPoint(targetdata)
+            center_x, center_y = self.targetPoint(targetdata)
 
         #   Corner points
             start_x = center_x - (spotcount/2) * spotspacing
