@@ -43,7 +43,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
     def targetShape(self, target):
         if target['image'] is None:
-            (4096, 4096)
+            return 4096, 4096
         else:
             dims = target['image']['camera']['dimension']
             return dims['y'],dims['x']
@@ -101,8 +101,6 @@ class SpotScanAcquisition(acquisition.Acquisition):
         for newpresetname in presetnames:
             if self.alreadyAcquired(targetdata, newpresetname):
                 continue
-
-    
 
             # Check that these are sane
             if spotsize >= 9 or spotsize <= 1 or spotcount < 0:
