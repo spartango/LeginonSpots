@@ -152,13 +152,16 @@ class SpotScanAcquisition(acquisition.Acquisition):
                             return 'invalid'
 
                         presetdata = self.presetsclient.getPresetByName(newpresetname)
-
-                        self.instrument.tem['spot size'] = spotsize
+                        old_spotsize = presetdata['spot size']
+                        presetdata['spot size'] = spotsize
 
                         ### acquire film or CCD
                         self.startTimer('acquire')
                         ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
                         self.stopTimer('acquire')
+
+                        presetdata['spot size'] = old_spotsize
+
                         # in these cases, return immediately
                         if ret in ('aborted', 'repeat'):
                             self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
