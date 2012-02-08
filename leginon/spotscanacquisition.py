@@ -2,7 +2,6 @@
 
 import leginondata
 import acquisition
-import libCVwrapper
 import numpy
 import time
 import math

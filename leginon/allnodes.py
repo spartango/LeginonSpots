@@ -89,6 +89,9 @@ noderegistry.registerNodeClass(Focuser,classtype)
 from rctacquisition import RCTAcquisition
 noderegistry.registerNodeClass(RCTAcquisition,classtype)
 
+from rctspotacquisition import RCTSpotAcquisition
+noderegistry.registerNodeClass(RCTSpotAcquisition,classtype)
+
 from spotscanacquisition import SpotScanAcquisition
 noderegistry.registerNodeClass(SpotScanAcquisition,classtype)
 
@@ -201,4 +204,3 @@ noderegistry.registerNodeClass(Navigator,classtype)
 
 from imageassessor import ImageAssessor
 noderegistry.registerNodeClass(ImageAssessor,classtype)
-
