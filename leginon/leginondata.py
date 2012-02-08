@@ -2039,6 +2039,24 @@ class SpotScanAcquisitionSettingsData(AcquisitionSettingsData):
 		)
 	typemap = classmethod(typemap)
 
+class RCTSpotAcquisitionSettingsData(AcquisitionSettingsData):
+	def typemap(cls):
+		return AcquisitionSettingsData.typemap() + (
+			('tilts', str),
+			('stepsize', float),
+			('pause', float),
+			('minsize', float),
+			('maxsize', float),
+			('medfilt', int),
+			('lowfilt', float),
+			('drift threshold', float),
+			('drift preset', str),
+			('spot size', int),
+			('spot spacing', float),
+			('spot count', int),
+		)
+	typemap = classmethod(typemap)
+
 class ImageAssessorSettingsData(SettingsData):
 	def typemap(cls):
 		return SettingsData.typemap() + (

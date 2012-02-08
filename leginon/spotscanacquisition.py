@@ -11,11 +11,11 @@ import gui.wx.SpotScanAcquisition
 from scipy import ndimage
 
 class SpotScanAcquisition(acquisition.Acquisition):
-    panelclass = gui.wx.SpotScanAcquisition.Panel
-    settingsclass = leginondata.SpotScanAcquisitionSettingsData
+    panelclass      = gui.wx.SpotScanAcquisition.Panel
+    settingsclass   = leginondata.SpotScanAcquisitionSettingsData
     defaultsettings = acquisition.Acquisition.defaultsettings
 
-    eventinputs = acquisition.Acquisition.eventinputs
+    eventinputs  = acquisition.Acquisition.eventinputs
     eventoutputs = acquisition.Acquisition.eventoutputs
 
     defaultsettings.update({
@@ -121,8 +121,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
             end_x = center_x + (spotcount/2) * spotspacing
             end_y = center_y + (spotcount/2) * spotspacing
 
-            self.logger.info(('Subtargets for %f, %f' % (center_x, center_y)))
-            self.logger.info(('Interval: %f, %f  -> %f, %f' % (start_x, start_y, end_x, end_y)))
+            self.logger.info(('Subtargets for %d, %d' % (center_x, center_y)))
+            self.logger.info(('Interval: %d, %d  -> %d, %d' % (start_x, start_y, end_x, end_y)))
         
         #   Generate new coordinates around point
             for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
@@ -134,7 +134,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         subtarget['delta row']    = point_x
                         subtarget['delta column'] = point_y
 
-                        self.logger.info('subtarget -> %f, %f' % (point_x, point_y))
+                        self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
 
                         if subtarget is not None and subtarget['type'] != 'simulated' and self.settings['adjust for transform'] != 'no':
                             if self.settings['drift between'] and self.goodnumber > 0:
