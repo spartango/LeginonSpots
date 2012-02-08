@@ -3,9 +3,9 @@
 - Application XML-Dump
 - http://ami.scripps.edu/ 
 -
-- Application :MSI-RCT raster2 (2.1)
+- Application :MSI-RCT-Spot (2.1)
 - Version     :0
-- Date : 10/10/2011
+- Date : 2/07/2011
 -
 -->
 
@@ -112,7 +112,7 @@
     <sqltable name="ApplicationData" >
         <field name="DEF_id" >726</field>
         <field name="DEF_timestamp" >2011-10-10 18:21:11</field>
-        <field name="name" >MSI-RCT raster2 (2.1)</field>
+        <field name="name" >MSI-RCT Spot (2.1)</field>
         <field name="version" >0</field>
     </sqltable>
   <!-- BindingSpecData -->
@@ -719,7 +719,7 @@
     <sqltable name="NodeSpecData" >
         <field name="DEF_id" >8440</field>
         <field name="DEF_timestamp" >2011-10-10 18:21:11</field>
-        <field name="class string" >RCTAcquisition</field>
+        <field name="class string" >RCTSpotAcquisition</field>
         <field name="alias" >RCT</field>
         <field name="launcher alias" >main</field>
         <field name="SEQ|dependencies" >[]</field>
