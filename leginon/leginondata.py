@@ -705,6 +705,8 @@ class AcquisitionImageData(PresetImageData):
 			('tilt series', TiltSeriesData),
 			('version', int),
 			('tiltnumber', int),
+			('spot_x', int),
+			('spot_y', int),
 		)
 	typemap = classmethod(typemap)
 

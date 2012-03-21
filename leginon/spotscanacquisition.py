@@ -25,13 +25,14 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
     def __init__(self, id, session, managerlocation, **kwargs):
         acquisition.Acquisition.__init__(self, id, session, managerlocation, **kwargs)
-        # Spot series info
-        # TODO
 
-    #def setImageFilename(self, imagedata):
-    #    setImageFilename(imagedata)
-    #    Spot series filenames
-    #    TODO
+    def setImageFilename(self, imagedata, spot_x=None, spot_y=None):
+        acquisition.setImageFilename(imagedata)
+        if spot_x is None or spot_y is None:
+            spot_x = imagedata['spot_x']
+            spot_y = imagedata['spot_y']
+        if spot_x is not None and spot_y is not None:
+            imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
 
     # Utilities
     def targetPoint(self, target):
@@ -129,7 +130,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                     
                     # Check that coordinates are in frame
                     if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
-                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
+                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata, spot_x=point_x, spot_x=point_y)
                         subtarget['delta row']    = point_x
                         subtarget['delta column'] = point_y
 
@@ -141,6 +142,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                             targetonimage = subtarget['delta column'],subtarget['delta row']
                             subtarget = self.adjustTargetForTransform(subtarget)
                             self.logger.info('target adjusted by (%.1f,%.1f) (column, row)' % (subtarget['delta column']-targetonimage[0],subtarget['delta row']-targetonimage[1]))
+                        
                         offset = {'x':self.settings['target offset col'],'y':self.settings['target offset row']}
                         if offset['x'] or offset['y']:
                             subtarget = self.makeTransformTarget(subtarget,offset)
@@ -151,7 +153,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                             return 'invalid'
 
                         presetdata = self.presetsclient.getPresetByName(newpresetname)
-                        
+
                         # Force the spot size change we want
                         self.instrument.tem.SpotSize = spotsize
 
