@@ -152,6 +152,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
 
                         presetdata = self.presetsclient.getPresetByName(newpresetname)
                         
+                        # Force the spot size change we want
                         self.instrument.tem.SpotSize = spotsize
 
                         ### acquire film or CCD
@@ -162,7 +163,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         # in these cases, return immediately
                         if ret in ('aborted', 'repeat'):
                             self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
-                            break
+                            # Need to exit here completely, no more rastering
+                            return ret
                         if ret == 'repeat':
                             return repeat
 
