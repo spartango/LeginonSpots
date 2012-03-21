@@ -79,7 +79,7 @@ class RCTSpotAcquisition(rctacquisition.RCTAcquisition):
                     
                     # Check that coordinates are in frame
                     if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
-                        sub_target = leginondata.AcquisitionImageTargetData(initializer=target)
+                        sub_target = leginondata.AcquisitionImageTargetData(initializer=target, spot_x=point_x, spot_y=point_y)
                         sub_target['delta row']    = point_x
                         sub_target['delta column'] = point_y
 
