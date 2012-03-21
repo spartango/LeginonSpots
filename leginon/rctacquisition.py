@@ -316,9 +316,7 @@ class RCTAcquisition(acquisition.Acquisition):
 				arraynew = ndimage.gaussian_filter(arraynew, lowfilt)
 			self.setImage(arraynew, 'Image')
 
-			print '============ Craig stuff ============'
-
-			self.logger.info('Craig\'s libCV stuff')
+			# CV testing to try to validate tilt
 			minsize = self.settings['minsize']
 			maxsize = self.settings['maxsize']
 			libCVwrapper.checkArrayMinMax(self, arrayold, arraynew)
@@ -348,8 +346,7 @@ class RCTAcquisition(acquisition.Acquisition):
 				continue
 			else:
 				retries = 0			
-			print '============ Craig stuff done ============'
-
+		
 			self.logger.info("result matrix= "+str(numpy.asarray(result*100, dtype=numpy.int8).ravel()))
 			self.logger.info( "Inter Matrix: "+libCVwrapper.affineToText(result) )
 
