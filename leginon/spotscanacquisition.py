@@ -33,7 +33,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
             spot_y = imagedata['spot_y']
         if spot_x is not None and spot_y is not None:
             imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
-    self.logger.info('Filename -> %s' % imagedata['filename'])
+        self.logger.info('Filename -> %s' % imagedata['filename'])
 
     # Utilities
     def targetPoint(self, target):
@@ -149,7 +149,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         return 'invalid'
 
                     presetdata = self.presetsclient.getPresetByName(newpresetname)
-                    
+
                     ### acquire film or CCD
                     self.startTimer('acquire')
                     # Load up the preset and acquire
