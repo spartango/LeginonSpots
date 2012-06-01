@@ -116,8 +116,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
             center_x, center_y = self.targetPoint(targetdata)
 
         #   Corner points
-            start_x = (spotcount/2) * spotspacing
-            start_y = (spotcount/2) * spotspacing
+            start_x = -(spotcount/2) * spotspacing
+            start_y = -(spotcount/2) * spotspacing
 
             end_x = (spotcount/2) * spotspacing
             end_y = (spotcount/2) * spotspacing
