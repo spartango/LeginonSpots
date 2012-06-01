@@ -24,6 +24,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
         })
 
     def __init__(self, id, session, managerlocation, **kwargs):
+        self.spotX = 0
+        self.spotX = 0
         acquisition.Acquisition.__init__(self, id, session, managerlocation, **kwargs)
 
     def setImageFilename(self, imagedata, spot_x=None, spot_y=None):
@@ -33,6 +35,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
             spot_y = imagedata['spot_y']
         if spot_x is not None and spot_y is not None:
             imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
+        else:
+            imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (self.spotX, self.spotY, )
         self.logger.info('Filename -> %s' % imagedata['filename'])
 
     # Utilities
@@ -130,10 +134,10 @@ class SpotScanAcquisition(acquisition.Acquisition):
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
                     subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
-                    simagedata = subtarget['image']
-                    simagedata['spot_x'] = point_x
-                    simagedata['spot_y'] = point_y
                     
+                    self.spotX = point_x
+                    self.spotY = point_y
+
                     subtarget['spot_x'] = point_x
                     subtarget['spot_y'] = point_y
                     
