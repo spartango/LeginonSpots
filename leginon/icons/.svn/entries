@@ -1,7 +1,7 @@
 10
 
 dir
-16298
+16706
 http://ami.scripps.edu/svn/myami/branches/myami-2.1/leginon/icons
 http://ami.scripps.edu/svn/myami
 
@@ -366,16 +366,16 @@ has-props
 
 301
 
-pause.png
+check.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-2fb9d5b71d3963aa71236a139c972a67
-2004-10-08T22:10:50.000000Z
-3158
+4c4b73a9d9e1c1a19dc177492eff3746
+2004-10-09T00:26:31.000000Z
+3160
 suloway
 has-props
 
@@ -398,41 +398,7 @@ has-props
 
 
 
-303
-
-manualfocus.png
-file
-
-
-
-
-2011-09-21T21:06:09.000000Z
-7dccf38812eb0b19675c6e0bcdf97cb5
-2004-10-09T01:23:15.000000Z
-3163
-suloway
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-311
+252
 
 beamtiltset.png
 file
@@ -468,16 +434,16 @@ has-props
 
 410
 
-check.png
+manualfocus.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-4c4b73a9d9e1c1a19dc177492eff3746
-2004-10-09T00:26:31.000000Z
-3160
+7dccf38812eb0b19675c6e0bcdf97cb5
+2004-10-09T01:23:15.000000Z
+3163
 suloway
 has-props
 
@@ -500,7 +466,41 @@ has-props
 
 
 
-252
+311
+
+pause.png
+file
+
+
+
+
+2011-09-21T21:06:09.000000Z
+2fb9d5b71d3963aa71236a139c972a67
+2004-10-08T22:10:50.000000Z
+3158
+suloway
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+303
 
 color.png
 file
@@ -1114,40 +1114,6 @@ has-props
 
 267
 
-green.png
-file
-
-
-
-
-2011-09-21T21:06:09.000000Z
-deb552789a2196b85f4a49990491c811
-2004-10-12T01:45:41.000000Z
-3191
-suloway
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-518
-
 setup.png
 file
 
@@ -1182,16 +1148,16 @@ has-props
 
 59301
 
-beamtilt.png
+green.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-f82c7b0de1ebee0fa2bb850e16a3866c
-2004-10-21T06:40:05.000000Z
-3323
+deb552789a2196b85f4a49990491c811
+2004-10-12T01:45:41.000000Z
+3191
 suloway
 has-props
 
@@ -1214,7 +1180,7 @@ has-props
 
 
 
-627
+518
 
 tiltaxis.png
 file
@@ -1249,6 +1215,40 @@ has-props
 
 
 323
+
+beamtilt.png
+file
+
+
+
+
+2011-09-21T21:06:09.000000Z
+f82c7b0de1ebee0fa2bb850e16a3866c
+2004-10-21T06:40:05.000000Z
+3323
+suloway
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+627
 
 corrector.png
 file
@@ -1318,40 +1318,6 @@ has-props
 
 247
 
-display.png
-file
-
-
-
-
-2011-09-21T21:06:09.000000Z
-3f8a68aa2bace9982ac455d800ae626e
-2007-06-19T21:54:54.000000Z
-5895
-acheng
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1115
-
 rotcenter.png
 file
 
@@ -1385,6 +1351,40 @@ has-props
 
 
 353
+
+display.png
+file
+
+
+
+
+2011-09-21T21:06:09.000000Z
+3f8a68aa2bace9982ac455d800ae626e
+2007-06-19T21:54:54.000000Z
+5895
+acheng
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1115
 
 end.png
 file
@@ -1420,17 +1420,17 @@ acheng
 
 224
 
-instrumentget.png
+valueinverse.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-8545dbcf2d56948cf3e090ab40af346e
-2004-10-29T22:38:52.000000Z
-3395
-suloway
+994168544b2760452d37b9fe5b32fd2e
+2009-10-28T01:16:54.570230Z
+12542
+acheng
 has-props
 
 
@@ -1452,7 +1452,7 @@ has-props
 
 
 
-483
+279
 
 instrument.png
 file
@@ -1488,17 +1488,17 @@ has-props
 
 246
 
-valueinverse.png
+instrumentget.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-994168544b2760452d37b9fe5b32fd2e
-2009-10-28T01:16:54.570230Z
-12542
-acheng
+8545dbcf2d56948cf3e090ab40af346e
+2004-10-29T22:38:52.000000Z
+3395
+suloway
 has-props
 
 
@@ -1520,7 +1520,7 @@ has-props
 
 
 
-279
+483
 
 cam_ruler.png
 file
@@ -1556,17 +1556,17 @@ has-props
 
 909
 
-null.png
+grayscale.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-90bc3f087db04735fde1f43abd84333f
-2005-06-07T22:49:55.000000Z
-3972
-pulokas
+fcdac8bc646b2be31452ac69465d4984
+2004-11-11T18:43:39.000000Z
+3462
+suloway
 has-props
 
 
@@ -1588,7 +1588,7 @@ has-props
 
 
 
-174
+311
 
 import.png
 file
@@ -1624,17 +1624,17 @@ has-props
 
 434
 
-grayscale.png
+null.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-fcdac8bc646b2be31452ac69465d4984
-2004-11-11T18:43:39.000000Z
-3462
-suloway
+90bc3f087db04735fde1f43abd84333f
+2005-06-07T22:49:55.000000Z
+3972
+pulokas
 has-props
 
 
@@ -1656,7 +1656,7 @@ has-props
 
 
 
-311
+174
 
 focusget.png
 file
@@ -1692,40 +1692,6 @@ has-props
 
 448
 
-instrumentset.png
-file
-
-
-
-
-2011-09-21T21:06:09.000000Z
-130a1a41a990888654db8cc6dfb7fb94
-2004-10-29T22:38:52.000000Z
-3395
-suloway
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-501
-
 begin.png
 file
 
@@ -1759,6 +1725,40 @@ acheng
 
 
 222
+
+instrumentset.png
+file
+
+
+
+
+2011-09-21T21:06:09.000000Z
+130a1a41a990888654db8cc6dfb7fb94
+2004-10-29T22:38:52.000000Z
+3395
+suloway
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+501
 
 stop.png
 file
@@ -1828,16 +1828,16 @@ has-props
 
 278
 
-arrow.png
+simulatetarget.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-f78e9e1359d7687b0ac5ab3b15b6d48e
-2004-10-11T02:13:27.000000Z
-3182
+987247aa170cdacafe2bcb1b68a7737f
+2004-10-28T17:24:34.000000Z
+3376
 suloway
 has-props
 
@@ -1860,41 +1860,7 @@ has-props
 
 
 
-241
-
-clear_queue.png
-file
-
-
-
-
-2011-09-21T21:06:09.000000Z
-d903dbf1a289b5c5a153458af542454a
-2005-06-07T22:49:55.000000Z
-3972
-pulokas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-645
+305
 
 dose.png
 file
@@ -1930,17 +1896,17 @@ has-props
 
 499
 
-simulatetarget.png
+clear_queue.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-987247aa170cdacafe2bcb1b68a7737f
-2004-10-28T17:24:34.000000Z
-3376
-suloway
+d903dbf1a289b5c5a153458af542454a
+2005-06-07T22:49:55.000000Z
+3972
+pulokas
 has-props
 
 
@@ -1962,18 +1928,18 @@ has-props
 
 
 
-305
+645
 
-info.png
+arrow.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-6004809f1815750a5f17aa7a3220c47f
-2004-10-13T00:14:23.000000Z
-3206
+f78e9e1359d7687b0ac5ab3b15b6d48e
+2004-10-11T02:13:27.000000Z
+3182
 suloway
 has-props
 
@@ -1996,7 +1962,7 @@ has-props
 
 
 
-305
+241
 
 focusset.png
 file
@@ -2032,16 +1998,16 @@ has-props
 
 413
 
-cleargrid.png
+info.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-1d68b0470b99078315923c1fb7a479a8
-2005-03-02T23:05:12.000000Z
-3642
+6004809f1815750a5f17aa7a3220c47f
+2004-10-13T00:14:23.000000Z
+3206
 suloway
 has-props
 
@@ -2064,7 +2030,7 @@ has-props
 
 
 
-451
+305
 
 targetfilter.png
 file
@@ -2100,16 +2066,16 @@ has-props
 
 260
 
-sine.png
+cleargrid.png
 file
 
 
 
 
 2011-09-21T21:06:09.000000Z
-a82484d003b501f2c671bb944609c190
-2004-10-21T16:03:02.000000Z
-3324
+1d68b0470b99078315923c1fb7a479a8
+2005-03-02T23:05:12.000000Z
+3642
 suloway
 has-props
 
@@ -2132,7 +2098,7 @@ has-props
 
 
 
-619
+451
 
 loop_play.png
 file
@@ -2167,6 +2133,40 @@ has-props
 
 
 740
+
+sine.png
+file
+
+
+
+
+2011-09-21T21:06:09.000000Z
+a82484d003b501f2c671bb944609c190
+2004-10-21T16:03:02.000000Z
+3324
+suloway
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+619
 
 fftmaker.png
 file

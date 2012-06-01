@@ -1,7 +1,7 @@
 10
 
 dir
-16298
+16706
 http://ami.scripps.edu/svn/myami/branches/myami-2.1/leginon/gui/wx
 http://ami.scripps.edu/svn/myami
 
@@ -26,16 +26,16 @@ acheng
 
 7194d2a7-0b6d-4db4-844f-13006c256e48
 
-Camera.py
+NewTargetFinder.py
 file
 
 
 
 
 2011-09-21T21:06:12.000000Z
-334121cbf15aa4e975bc03fd496ec4b1
-2010-10-21T23:16:28.157432Z
-14916
+b6fb27a7645ae584fa930770ffa0b066
+2010-05-05T03:28:48.147707Z
+13700
 acheng
 
 
@@ -58,41 +58,7 @@ acheng
 
 
 
-14758
-
-ApplicationEditorLite.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-607257db19d57db3ddc6cd43a51b676d
-2010-01-28T01:16:01.637365Z
-12928
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-19605
+18706
 
 MosaicSectionFinder.py
 file
@@ -128,16 +94,50 @@ pulokas
 
 10678
 
-NewTargetFinder.py
+ApplicationEditorLite.py
 file
 
 
 
 
 2011-09-21T21:06:12.000000Z
-b6fb27a7645ae584fa930770ffa0b066
-2010-05-05T03:28:48.147707Z
-13700
+607257db19d57db3ddc6cd43a51b676d
+2010-01-28T01:16:01.637365Z
+12928
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19605
+
+Camera.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+334121cbf15aa4e975bc03fd496ec4b1
+2010-10-21T23:16:28.157432Z
+14916
 acheng
 
 
@@ -160,7 +160,7 @@ acheng
 
 
 
-18706
+14758
 
 TargetFilter.py
 file
@@ -230,40 +230,6 @@ pulokas
 
 2160
 
-Reference.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-bfbe919e69c53f6dad7e43e3f3707eba
-2010-04-11T03:50:57.733715Z
-13448
-acheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4162
-
 Stats.py
 file
 
@@ -297,6 +263,40 @@ vossman
 
 
 1841
+
+Reference.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+bfbe919e69c53f6dad7e43e3f3707eba
+2010-04-11T03:50:57.733715Z
+13448
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4162
 
 __init__.py
 file
@@ -366,40 +366,6 @@ acheng
 
 6980
 
-ImageViewer.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-3a7948f860e8520e36468ae7ac4f0960
-2010-05-17T17:37:56.913561Z
-13965
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-55290
-
 BeamTiltCalibrator.py
 file
 
@@ -433,6 +399,40 @@ acheng
 
 
 25617
+
+ImageViewer.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+3a7948f860e8520e36468ae7ac4f0960
+2010-05-17T17:37:56.913561Z
+13965
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+55290
 
 TargetPanel.py
 file
@@ -1114,40 +1114,6 @@ pulokas
 
 3843
 
-DTFinder.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-2e7844f593459ab57344a89d76d1887d
-2010-09-22T20:56:25.503610Z
-14816
-acheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9319
-
 Dialog.py
 file
 
@@ -1181,6 +1147,40 @@ acheng
 
 
 1637
+
+DTFinder.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+2e7844f593459ab57344a89d76d1887d
+2010-09-22T20:56:25.503610Z
+14816
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9319
 
 Launcher.py
 file
@@ -1216,9 +1216,6 @@ acheng
 
 9893
 
-tomography
-dir
-
 ObjectCanvas.py
 file
 
@@ -1252,6 +1249,9 @@ suloway
 
 
 37123
+
+tomography
+dir
 
 AutoExposure.py
 file
@@ -1321,40 +1321,6 @@ acheng
 
 23019
 
-MatrixCalibrator.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-b448af24ccfb796dd8736356f5684e31
-2010-04-22T22:00:36.615984Z
-13576
-acheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13271
-
 GridEntry.py
 file
 
@@ -1388,6 +1354,40 @@ pulokas
 
 
 4939
+
+MatrixCalibrator.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+b448af24ccfb796dd8736356f5684e31
+2010-04-22T22:00:36.615984Z
+13576
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13271
 
 ExposureFixer.py
 file
@@ -1525,40 +1525,6 @@ acheng
 
 4935
 
-ClickTargetTransformer.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-367df673c7492d785aa40e0754c4b096
-2010-01-27T00:47:30.535039Z
-12910
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6543
-
 PixelSizeCalibrator.py
 file
 
@@ -1592,6 +1558,40 @@ acheng
 
 
 18939
+
+ClickTargetTransformer.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+367df673c7492d785aa40e0754c4b096
+2010-01-27T00:47:30.535039Z
+12910
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6543
 
 MosaicClickTargetFinder.py
 file
@@ -1661,40 +1661,6 @@ has-props
 
 31798
 
-ListBox.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-7494c987d28ea5fdaf17e8d4e2bc4cdd
-2010-01-27T23:46:23.609850Z
-12923
-pulokas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7644
-
 ClickTargetFinder.py
 file
 
@@ -1728,6 +1694,40 @@ pulokas
 
 
 2201
+
+ListBox.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+7494c987d28ea5fdaf17e8d4e2bc4cdd
+2010-01-27T23:46:23.609850Z
+12923
+pulokas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7644
 
 FFTAnalyzer.py
 file
@@ -1831,40 +1831,6 @@ acheng
 
 8232
 
-Acquisition.py
-file
-
-
-
-
-2011-09-21T21:06:12.000000Z
-00178ac8e16f522d0f8f3d6c90958c42
-2010-08-24T21:32:57.753710Z
-14714
-acheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-20585
-
 FFTAce.py
 file
 
@@ -1898,6 +1864,40 @@ pulokas
 
 
 2019
+
+Acquisition.py
+file
+
+
+
+
+2011-09-21T21:06:12.000000Z
+00178ac8e16f522d0f8f3d6c90958c42
+2010-08-24T21:32:57.753710Z
+14714
+acheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20585
 
 ImageScale.py
 file
@@ -2035,17 +2035,17 @@ acheng
 
 6546
 
-Beeper.py
+MosaicTargetMaker.py
 file
 
 
 
 
 2011-09-21T21:06:12.000000Z
-87b97892a283f186568f2754b970b03f
-2010-01-27T23:46:23.609850Z
-12923
-pulokas
+9b8c5f720960710075731277f7223390
+2010-04-22T21:59:33.409838Z
+13575
+acheng
 
 
 
@@ -2067,7 +2067,7 @@ pulokas
 
 
 
-2412
+7002
 
 Corrector.py
 file
@@ -2103,17 +2103,17 @@ acheng
 
 17013
 
-MosaicTargetMaker.py
+Beeper.py
 file
 
 
 
 
 2011-09-21T21:06:12.000000Z
-9b8c5f720960710075731277f7223390
-2010-04-22T21:59:33.409838Z
-13575
-acheng
+87b97892a283f186568f2754b970b03f
+2010-01-27T23:46:23.609850Z
+12923
+pulokas
 
 
 
@@ -2135,7 +2135,7 @@ acheng
 
 
 
-7002
+2412
 
 ImageAssessor.py
 file
