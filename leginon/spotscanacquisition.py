@@ -129,8 +129,10 @@ class SpotScanAcquisition(acquisition.Acquisition):
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
                     # Check that coordinates are in frame
-                    if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
-                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata, spot_x=point_x, spot_y=point_y)
+                    if True:
+                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
+			subtarget['spot_x'] 	  = point_x
+			subtarget['spot_y']       = point_y
                         subtarget['delta row']    = point_x
                         subtarget['delta column'] = point_y
 
