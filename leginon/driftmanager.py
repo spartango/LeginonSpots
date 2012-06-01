@@ -22,6 +22,7 @@ import gui.wx.DriftManager
 import instrument
 import acquisition
 import rctacquisition
+import cameraclient
 
 class DriftManager(watcher.Watcher):
 	panelclass = gui.wx.DriftManager.Panel
@@ -30,24 +31,7 @@ class DriftManager(watcher.Watcher):
 		'threshold': 3e-10,
 		'pause time': 2.5,
 		'timeout': 30,
-		'camera settings':
-			leginondata.CameraSettingsData(
-				initializer={
-					'dimension': {
-						'x': 1024,
-						'y': 1024,
-					},
-					'offset': {
-						'x': 0,
-						'y': 0,
-					},
-					'binning': {
-						'x': 1,
-						'y': 1,
-					},
-					'exposure time': 1000.0,
-				}
-			),
+		'camera settings': cameraclient.default_settings,
 	}
 	eventinputs = watcher.Watcher.eventinputs + [event.DriftMonitorRequestEvent, event.PresetChangedEvent]
 	eventoutputs = watcher.Watcher.eventoutputs + [event.DriftMonitorResultEvent, event.ChangePresetEvent, event.PresetLockEvent, event.PresetUnlockEvent, event.AcquisitionImagePublishEvent]
@@ -106,7 +90,10 @@ class DriftManager(watcher.Watcher):
 
 		## acquire images, measure drift
 		self.abortevent.clear()
+		# extra pause to wait for image shift to stabilize
+		self.logger.info('pausing before loop')
 		time.sleep(self.settings['pause time']/2.0)	
+		self.logger.info('paused before loop')
 		status,final,im = self.acquireLoop(target, threshold=threshold)
 		if status in ('drifted', 'timeout'):
 			## declare drift above threshold
@@ -147,9 +134,12 @@ class DriftManager(watcher.Watcher):
 	def acquireLoop(self, target=None, threshold=None):
 		## acquire first image
 		# make sure we have waited "pause time" before acquire the first image
+		self.logger.info('pausing at loop start')
 		time.sleep(self.settings['pause time'])
+		self.logger.info('paused at loop start')
 		corchan = 0
 		imagedata = self.acquireImage(channel=corchan)
+		self.logger.info('first image acquired')
 		if imagedata is None:
 			return 'aborted', None
 		numdata = imagedata['image']
@@ -180,10 +170,7 @@ class DriftManager(watcher.Watcher):
 			t1 = self.instrument.tem.SystemTime
 			dt = t1 - t0
 			pausetime = self.settings['pause time']
-			# make sure we have waited at least "pause time" before acquire
-			# disabled but use the setting for before the first image.
-#			if dt < pausetime:
-			if False:
+			if dt < pausetime:
 				thispause = pausetime - dt
 				self.startTimer('drift pause')
 				time.sleep(thispause)
@@ -195,6 +182,7 @@ class DriftManager(watcher.Watcher):
 			else:
 				corchan = 1
 			imagedata = self.acquireImage(channel=corchan)
+			self.logger.info('new image acquired')
 			numdata = imagedata['image']
 			binning = imagedata['camera']['binning']['x']
 			t1 = imagedata['scope']['system time']
@@ -219,6 +207,7 @@ class DriftManager(watcher.Watcher):
 			colmeters = cols * binning * pixsize
 			# rely on system time of EM node
 			seconds = t1 - t0
+			self.logger.info('time %.2f' % seconds)
 			lastdrift2 = lastdrift1
 			lastdrift1 = current_drift
 			current_drift = meters / seconds

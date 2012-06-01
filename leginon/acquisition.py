@@ -113,7 +113,8 @@ class Acquisition(targetwatcher.TargetWatcher):
 	panelclass = gui.wx.Acquisition.Panel
 	settingsclass = leginondata.AcquisitionSettingsData
 	# maybe not a class attribute
-	defaultsettings = {
+	defaultsettings = dict(targetwatcher.TargetWatcher.defaultsettings)
+	defaultsettings.update({
 		'pause time': 2.5,
 		'move type': 'image shift',
 		'preset order': [],
@@ -145,7 +146,8 @@ class Acquisition(targetwatcher.TargetWatcher):
 		'target offset row': 0,
 		'target offset col': 0,
 		'correct image shift coma': False,
-	}
+		'park after target': False,
+	})
 	eventinputs = targetwatcher.TargetWatcher.eventinputs \
 								+ [event.DriftMonitorResultEvent,
 										event.MakeTargetListEvent,
@@ -634,6 +636,7 @@ class Acquisition(targetwatcher.TargetWatcher):
 				try:
 					beamtilt = beamtiltclient.transformImageShiftToBeamTilt(imageshift, tem, cam, ht, self.beamtilt0, mag)
 					self.instrument.tem.BeamTilt = beamtilt
+					self.logger.info("beam tilt for image acquired (%.4f,%.4f)" % (self.instrument.tem.BeamTilt['x'],self.instrument.tem.BeamTilt['y']))
 				except Exception, e:
 					raise NoMoveCalibration(e)
 			if self.settings['adjust time by tilt'] and abs(stagea) > 10 * 3.14159 / 180:
@@ -757,10 +760,9 @@ class Acquisition(targetwatcher.TargetWatcher):
 			imagedata = self.acquireCCD(presetdata, emtarget, channel=channel)
 
 		self.imagedata = imagedata
-		if debug and self.settings['correct image shift coma']:
-			print "beam tilt for image acquired",self.instrument.tem.BeamTilt
+		if self.settings['correct image shift coma']:
 			self.instrument.tem.BeamTilt = self.beamtilt0
-			print "resetted beam tilt",self.instrument.tem.BeamTilt
+			self.logger.info("reset beam tilt to (%.4f,%.4f)" % (self.instrument.tem.BeamTilt['x'],self.instrument.tem.BeamTilt['y']))
 		targetdata = emtarget['target']
 		if targetdata is not None and 'grid' in targetdata and targetdata['grid'] is not None:
 			imagedata['grid'] = targetdata['grid']
@@ -786,6 +788,14 @@ class Acquisition(targetwatcher.TargetWatcher):
 		## set pixel size so mrc file will have it in header
 		if imagedata.__class__ is leginondata.AcquisitionImageData:
 			imagedata.attachPixelSize()
+
+		if self.settings['park after target']:
+			time.sleep(self.settings['pause time'])
+			# send a preset at the highest magnification to keep the lens warm
+			park_presetname = self.presetsclient.getHighestMagPresetName()
+			self.logger.info('parking the scope to preset %s' % (park_presetname,))
+			self.presetsclient.toScope(park_presetname, None, False)
+			self.logger.info('scope parked at preset %s' % (park_presetname,))
 
 		self.reportStatus('output', 'Publishing image...')
 		self.startTimer('publish image')

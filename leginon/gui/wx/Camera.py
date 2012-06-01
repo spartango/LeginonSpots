@@ -6,8 +6,9 @@
 
 import copy
 import wx
-from leginon.gui.wx.Entry import IntEntry, FloatEntry, EVT_ENTRY
+from leginon.gui.wx.Entry import Entry, IntEntry, FloatEntry, EVT_ENTRY
 import numpy
+import re
 
 ConfigurationChangedEventType = wx.NewEventType()
 SetConfigurationEventType = wx.NewEventType()
@@ -37,6 +38,8 @@ class CameraPanel(wx.Panel):
 		self.geometry = None
 		self.binnings = {'x': [1,2,3,4,6,8], 'y': [1,2,3,4,6,8]}
 		self.defaultexptime = 1000.0
+		self.defaultsaveframes = False
+		self.defaultuseframes = ''
 		self.common = {}
 
 		# geometry
@@ -85,6 +88,16 @@ class CameraPanel(wx.Panel):
 		sz.Add(stms, (0, 1), (1, 1), wx.ALIGN_CENTER_VERTICAL)
 		self.szmain.Add(sz, (4, 1), (1, 2), wx.ALIGN_CENTER|wx.EXPAND)
 
+		# save raw frames
+		self.saveframes = wx.CheckBox(self, -1, 'Save raw frames')
+		self.szmain.Add(self.saveframes, (5, 0), (1, 2), wx.ALIGN_CENTER|wx.EXPAND)
+
+		# use raw frames
+		label = wx.StaticText(self, -1, 'Frames to use:')
+		self.useframes = Entry(self, -1)
+		self.szmain.Add(label, (6, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+		self.szmain.Add(self.useframes, (6, 1), (1, 1), wx.ALIGN_CENTER|wx.EXPAND)
+
 		self.szmain.AddGrowableCol(1)
 		self.szmain.AddGrowableCol(2)
 
@@ -95,6 +108,8 @@ class CameraPanel(wx.Panel):
 		self.Bind(wx.EVT_CHOICE, self.onCommonChoice, self.ccommon)
 		self.Bind(wx.EVT_BUTTON, self.onCustomButton, bcustom)
 		self.Bind(EVT_ENTRY, self.onExposureTime, self.feexposuretime)
+		self.Bind(wx.EVT_CHECKBOX, self.onSaveFrames, self.saveframes)
+		self.Bind(EVT_ENTRY, self.onUseFrames, self.useframes)
 		self.Bind(EVT_SET_CONFIGURATION, self.onSetConfiguration)
 
 		#self.Enable(False)
@@ -133,6 +148,8 @@ class CameraPanel(wx.Panel):
 		self.ccommon.SetSelection(len(self.choices) - 1)
 		self.setGeometry(self.common[self.ccommon.GetStringSelection()])
 		self.feexposuretime.SetValue(self.defaultexptime)
+		self.saveframes.SetValue(self.defaultsaveframes)
+		self.useframes.SetValue(self.defaultuseframes)
 		#self.Enable(False)
 		self.Thaw()
 
@@ -141,6 +158,12 @@ class CameraPanel(wx.Panel):
 		self.GetEventHandler().AddPendingEvent(evt)
 
 	def onExposureTime(self, evt):
+		self.onConfigurationChanged()
+
+	def onSaveFrames(self, evt):
+		self.onConfigurationChanged()
+
+	def onUseFrames(self, evt):
 		self.onConfigurationChanged()
 
 	def setCommonChoice(self):
@@ -183,6 +206,31 @@ class CameraPanel(wx.Panel):
 
 	def _setExposureTime(self, value):
 		self.feexposuretime.SetValue(value)
+
+	def _getSaveFrames(self):
+		return self.saveframes.GetValue()
+
+	def _setSaveFrames(self, value):
+		value = bool(value)
+		self.saveframes.SetValue(value)
+
+	def _getUseFrames(self):
+		frames_str = self.useframes.GetValue()
+		numbers = re.split('\D+', frames_str)
+		numbers = filter(None, numbers)
+		if numbers:
+			numbers = map(int, numbers)
+			numbers = tuple(numbers)
+		else:
+			numbers = ()
+		return numbers
+
+	def _setUseFrames(self, value):
+		if value:
+			value = str(value)
+		else:
+			value = ''
+		self.useframes.SetValue(value)
 
 	def onCommonChoice(self, evt):
 		key = evt.GetString()
@@ -252,7 +300,7 @@ class CameraPanel(wx.Panel):
 		mask = [good(dim) for dim in dimensions]
 		dimensions = filtergood(dimensions, mask)
 		def minsize(size):
-			return size >= 512
+			return size >= self.minsize / 8
 		dimensions = filter(minsize, dimensions)
 		binnings = filtergood(self.binnings['x'], mask)
 
@@ -318,6 +366,8 @@ class CameraPanel(wx.Panel):
 			return None
 		c = copy.deepcopy(g)
 		c['exposure time'] = self._getExposureTime()
+		c['save frames'] = self._getSaveFrames()
+		c['use frames'] = self._getUseFrames()
 		return c
 
 	def _setGeometry(self, geometry):
@@ -345,15 +395,21 @@ class CameraPanel(wx.Panel):
 		return True
 
 	def _setConfiguration(self, value):
-		try:
-			self._setExposureTime(value['exposure time'])
-		except KeyError:
-			pass
+		setfuncs = {
+			'exposure time': self._setExposureTime,
+			'save frames': self._setSaveFrames,
+			'use frames': self._setUseFrames,
+		}
+		for key, func in setfuncs.items():
+			if key in value:
+				func(value[key])
 		self._setGeometry(value)
 		self.setCommonChoice()
 
 	def setConfiguration(self, value):
 		self._setExposureTime(value['exposure time'])
+		self._setSaveFrames(value['save frames'])
+		self._setUseFrames(value['use frames'])
 		self.setGeometry(value)
 		if self.size is not None:
 			self.setCommonChoice()

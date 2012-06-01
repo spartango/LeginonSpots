@@ -125,7 +125,6 @@ class Panel(leginon.gui.wx.Node.Panel, leginon.gui.wx.Instrument.SelectionMixin)
 		choices = [
 			'Dark',
 			'Bright',
-			'Bright-Dark',
 			'Norm',
 			'Raw',
 			'Corrected'
@@ -270,8 +269,6 @@ class Panel(leginon.gui.wx.Node.Panel, leginon.gui.wx.Instrument.SelectionMixin)
 			reftype = 'bright'
 		elif acqtype == 'Norm':
 			reftype = 'norm'
-		elif acqtype == 'Bright-Dark':
-			reftype = 'dark-subtracted'
 		else:
 			return
 		chanstr = self.cchannel.GetStringSelection()
@@ -393,6 +390,7 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 
 		self.widgets['n average'] = IntEntry(self, -1, min=1, max=99, chars=2)
 		self.widgets['combine'] = Choice(self, -1, choices=['median', 'average'])
+		self.widgets['store series'] = wx.CheckBox(self, -1, 'Save all images')
 
 		self.widgets['camera settings'] = leginon.gui.wx.Camera.CameraPanel(self)
 		self.widgets['camera settings'].setSize(self.node.instrument.camerasize)
@@ -420,6 +418,8 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 		szref.Add(label, (1, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
 		szref.Add(self.widgets['combine'], (1, 1), (1, 1), wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT)
 
+		szref.Add(self.widgets['store series'], (2,0), (1,2))
+
 		sbszref.Add(szref, 1, wx.ALIGN_CENTER|wx.EXPAND|wx.ALL, 3)
 
 		sz = wx.GridBagSizer(5, 10)
@@ -440,7 +440,7 @@ class EditPlanDialog(wx.Dialog):
 		
 		strows = wx.StaticText(self, -1, 'Bad rows:')
 		stcolumns = wx.StaticText(self, -1, 'Bad columns:')
-		stpixels = wx.StaticText(self, -1, 'Bad Pixel (x,y):')
+		stpixels = wx.StaticText(self, -1, 'Bad Pixels:')
 
 		pixels = ', '.join(map(str,self.plan['pixels']))
 		rows = ', '.join(map(str,self.plan['rows']))

@@ -30,6 +30,7 @@ class TargetWatcher(watcher.Watcher, targethandler.TargetHandler):
 	settingsclass = leginondata.TargetWatcherSettingsData
 	defaultsettings = {
 		'process target type': 'acquisition',
+		'park after list': False,
 	}
 
 	eventinputs = watcher.Watcher.eventinputs + targethandler.TargetHandler.eventinputs + [event.TargetListDoneEvent,
@@ -65,31 +66,6 @@ class TargetWatcher(watcher.Watcher, targethandler.TargetHandler):
 	def processTargetListQueue(self, newdata):
 		self.targetlistqueue = newdata
 		self.queueupdate.set()
-
-	def setZ(self, targetdata):
-		parentimage = targetdata.special_getitem('image', readimages=False)
-		if parentimage is None:
-			return
-		parenttarget = parentimage['target']
-		if parenttarget is None:
-			## only query targets from this image
-			imquery = parentimage
-		else:
-			## query targets from all image descendents of parenttarget
-			imquery = leginondata.AcquisitionImageData(target=parenttarget)
-		## query focus corrections made on parent image
-		targetquery = leginondata.AcquisitionImageTargetData(image=imquery)
-		focusquery = leginondata.FocuserResultData(target=targetquery)
-		siblingresults = focusquery.query(results=1)
-		# use z from focus result or from parent image
-		if siblingresults:
-			z = siblingresults[0]['scope']['stage position']['z']
-			self.logger.info('setting Z from focus result')
-		else:
-			z = parentimage['scope']['stage position']['z']
-			self.logger.info('setting Z from parent image')
-		self.instrument.tem.StagePosition = {'z': z}
-		self.logger.info('Z set to %f' % (z,))
 
 	def revertTargetListZ(self, targetlistdata):
 		'''use the z position of the target list parent image'''
@@ -245,7 +221,6 @@ class TargetWatcher(watcher.Watcher, targethandler.TargetHandler):
 
 			adjustedtarget = self.reportTargetStatus(target, 'processing')
 
-			#self.setZ(adjustedtarget)
 			# this while loop allows target to repeat
 			process_status = 'repeat'
 			attempt = 0
@@ -284,7 +259,15 @@ class TargetWatcher(watcher.Watcher, targethandler.TargetHandler):
 				# end of target repeat loop
 
 		self.reportTargetListDone(newdata, targetliststatus)
+		if self.settings['park after list']:
+			self.park()
 		self.setStatus('idle')
+
+	def park(self):
+		self.logger.info('parking...')
+		self.instrument.tem.ColumnValvePosition = 'closed'
+		self.instrument.tem.StagePosition = {'x': 0, 'y': 0, 'a': 0}
+		self.logger.warning('column valves closed and stage reset')
 
 	def waitForRejects(self):
 		# wait for other targets to complete

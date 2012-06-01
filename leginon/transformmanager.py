@@ -28,6 +28,7 @@ import libCVwrapper
 import align
 import targethandler
 import tiltcorrector
+import cameraclient
 
 class InvalidStagePosition(Exception):
 	pass
@@ -167,7 +168,17 @@ class TargetTransformer(targethandler.TargetHandler):
 		regtype = self.settings['registration']
 		reg = self.registrations[regtype]
 		self.logger.info('Calculating main transform. Registration: %s' % (regtype,))
-		matrix = reg.registerImageData(image1,image2)
+		# If registration fails, revert to identity matrix.
+		# In the future, maybe try loop through several registration
+		# types until one works with confidence.
+		try:
+			matrix = reg.registerImageData(image1,image2)
+		except Exception, exc:
+			self.logger.warning('Registration type "%s" failed: %s' % (regtype, exc))
+			reg = self.registrations['identity']
+			self.logger.warning('Targets will not be transformed.')
+			matrix = reg.registerImageData(image1,image2)
+
 		self.logger.info('Target transform matrix calculated')
 		matrixquery = leginondata.TransformMatrixData()
 		matrixquery['session'] = self.session
@@ -242,24 +253,7 @@ class TransformManager(node.Node, TargetTransformer):
 		'threshold': 3e-10,
 		'pause time': 2.5,
 		'min mag': 300,
-		'camera settings':
-			leginondata.CameraSettingsData(
-				initializer={
-					'dimension': {
-						'x': 1024,
-						'y': 1024,
-					},
-					'offset': {
-						'x': 0,
-						'y': 0,
-					},
-					'binning': {
-						'x': 1,
-						'y': 1,
-					},
-					'exposure time': 1000.0,
-				}
-			),
+		'camera settings': cameraclient.default_settings,
 	}
 	eventinputs = node.Node.eventinputs + presets.PresetsClient.eventinputs + [event.TransformTargetEvent]
 	eventoutputs = node.Node.eventoutputs + presets.PresetsClient.eventoutputs + [event.TransformTargetDoneEvent]
@@ -285,6 +279,7 @@ class TransformManager(node.Node, TargetTransformer):
 			'correlation': CorrelationRegistration(self),
 			'keypoints': KeyPointsRegistration(self),
 			'logpolar': LogPolarRegistration(self),
+			'identity': IdentityRegistration(self),
 		}
 
 		self.abortevent = threading.Event()

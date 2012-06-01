@@ -241,11 +241,14 @@ class CalibrationClient(object):
 			if not self.rpixelsize:
 				self.rpixelsize = self.getImageReciprocalPixelSize(imagedata)
 			ctfdata = fftfun.fitFirstCTFNode(pow,self.rpixelsize['x'], None, self.ht)
+			self.node.logger.info('tabeau defocus: %.3f um, zast: %.3f um' % (ctfdata[0]*1e6,ctfdata[1]*1e6))
 			self.ctfdata.append(ctfdata)
 
+			# show defocus estimate on tableau
 			if ctfdata:
 				s = '%d' % int(ctfdata[0]*1e9)
 				eparams = ctfdata[4]
+				self.node.logger.info('eparams a:%.3f, b:%.3f, alpha:%.3f' % (eparams['a'],eparams['b'],eparams['alpha']))
 				center = numpy.divide(eparams['center'], binning)
 				a = eparams['a'] / binning
 				b = eparams['b'] / binning
@@ -461,7 +464,7 @@ class PixelSizeCalibrationClient(CalibrationClient):
 				mag = caldata['magnification']
 			except:
 				print 'CALDATA', caldata
-				raise
+				raise RuntimeError('Failed retrieving last pixelsize')
 			if mag not in last:
 				last[mag] = caldata
 		return last.values()
@@ -488,6 +491,7 @@ class MatrixCalibrationClient(CalibrationClient):
 		caldatalist = self.node.research(datainstance=queryinstance, results=1)
 		if caldatalist:
 			caldata = caldatalist[0]
+			self.node.logger.debug('matrix calibration dbid: %d' % caldata.dbid)
 			return caldata
 		else:
 			excstr = 'no matrix for %s, %s, %s, %seV, %sx' % (tem['name'], ccdcamera['name'], caltype, ht, mag)
@@ -639,7 +643,7 @@ class BeamTiltCalibrationClient(MatrixCalibrationClient):
 			state2 = leginondata.ScopeEMData()
 			state2['beam tilt'] = bt2
 			try:
-				shiftinfo = self.measureScopeChange(image0, state2, settle=settle, correlation_type=correlation_type)
+				shiftinfo = self.measureScopeChange(image0, state2, settle=settle, correct_tilt=correct_tilt, correlation_type=correlation_type)
 			except Abort:
 				break
 
@@ -928,8 +932,10 @@ class BeamTiltCalibrationClient(MatrixCalibrationClient):
 					tvect = [0, 0]
 					tvect[axisn] = t
 					diff = self.measureDefocusDifference(tvect, settle)
-					if diff is None or not self.confirmDefocusInRange():
-						raise
+					if diff is None:
+						raise RuntimeError('Defocus Difference is None')
+					if not self.confirmDefocusInRange():
+						raise RuntimeError('Deofucs Range confirmation failed')
 					diffs[axisname][msign] = diff
 		finally:
 			## return to original beam tilt
@@ -1031,8 +1037,8 @@ class BeamTiltCalibrationClient(MatrixCalibrationClient):
 		self.node.logger.debug("Image Shift ( %5.2f, %5.2f)" % (imageshift['x']*1e6,imageshift['y']*1e6))
 		shiftvect = numpy.array((imageshift['x'], imageshift['y']))
 		change = numpy.dot(matrix, shiftvect)
-		newbeamtilt['x'] = zerobeamtilt['x'] + change[0]
-		newbeamtilt['y'] = zerobeamtilt['y'] + change[1]
+		newbeamtilt['x'] = zerobeamtilt['x'] - change[0]
+		newbeamtilt['y'] = zerobeamtilt['y'] - change[1]
 		self.node.logger.debug("Beam Tilt Correction ( %5.2f, %5.2f)" % (change[0]*1e3,change[1]*1e3))
 		self.node.logger.debug("Beam Tilt ( %5.2f, %5.2f)" % (newbeamtilt['x']*1e3,newbeamtilt['y']*1e3))
 		return newbeamtilt
@@ -1042,15 +1048,15 @@ class BeamTiltCalibrationClient(MatrixCalibrationClient):
 		cam = self.instrument.getCCDCameraData()
 		ht = self.instrument.tem.HighTension
 		mag = self.instrument.tem.Magnification
-		shift = self.instrument.tem.ImageShift
+		shift0 = self.instrument.tem.ImageShift
 		scopestate = leginondata.ScopeEMData(tem=tem,magnification=mag)
-		camerastate = leginondata.ScopeEMData(ccdcamera=cam)
+		camerastate = leginondata.CameraEMData(ccdcamera=cam)
 		tilt0 = self.instrument.tem.BeamTilt
 		scopestate['high tension'] = ht
 		scopestate['image shift'] = shift0
 		scopestate['beam tilt'] = tilt0
 		beamtilt = scopestate['beam tilt']
-		beamtilt = transformImageShiftToBeamTilt(shift, tem, cam, ht, beamtilt, mag)
+		beamtilt = self.transformImageShiftToBeamTilt(shift0, tem, cam, ht, beamtilt, mag)
 		self.setBeamTilt(beamtilt)
 
 class SimpleMatrixCalibrationClient(MatrixCalibrationClient):
@@ -1152,7 +1158,7 @@ class ImageShiftCalibrationClient(SimpleMatrixCalibrationClient):
 	def parameter(self):
 		return 'image shift'
 
-	def pixelToPixel(self, tem, ccdcamera, ht, mag1, mag2, p1):
+	def pixelToPixel(self, old_tem, old_ccdcamera, new_tem, new_ccdcamera, ht, mag1, mag2, p1):
 		'''
 		Using stage position as a global coordinate system, we can
 		do pixel to pixel transforms between mags.
@@ -1160,8 +1166,8 @@ class ImageShiftCalibrationClient(SimpleMatrixCalibrationClient):
 		a pixel vector at mag1.
 		'''
 		par = self.parameter()
-		matrix1 = self.retrieveMatrix(tem, ccdcamera, par, ht, mag1)
-		matrix2 = self.retrieveMatrix(tem, ccdcamera, par, ht, mag2)
+		matrix1 = self.retrieveMatrix(old_tem, old_ccdcamera, par, ht, mag1)
+		matrix2 = self.retrieveMatrix(new_tem, new_ccdcamera, par, ht, mag2)
 		matrix2inv = numpy.linalg.inv(matrix2)
 		p1 = numpy.array(p1)
 		stagepos = numpy.dot(matrix1, p1)
