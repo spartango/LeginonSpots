@@ -18,12 +18,17 @@ from scipy import ndimage
 pi = numpy.pi
 
 #====================
-def setImageFilename(imagedata, tiltnumber=None):
+def setImageFilename(imagedata, tiltnumber=None, spot_x=None, spot_y=None):
 		acquisition.setImageFilename(imagedata)
 		if tiltnumber is None:
 			tiltnumber = imagedata['tiltnumber']
 		if tiltnumber is not None:
 			imagedata['filename'] = imagedata['filename'] + '_%02d' % (tiltnumber,)
+		if spot_x is None or spot_y is None:
+            spot_x = imagedata['spot_x']
+            spot_y = imagedata['spot_y']
+        if spot_x is not None and spot_y is not None:
+            imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
 
 #====================
 def radians(degrees):
@@ -316,9 +321,7 @@ class RCTAcquisition(acquisition.Acquisition):
 				arraynew = ndimage.gaussian_filter(arraynew, lowfilt)
 			self.setImage(arraynew, 'Image')
 
-			print '============ Craig stuff ============'
-
-			self.logger.info('Craig\'s libCV stuff')
+			# CV testing to try to validate tilt
 			minsize = self.settings['minsize']
 			maxsize = self.settings['maxsize']
 			libCVwrapper.checkArrayMinMax(self, arrayold, arraynew)
@@ -348,8 +351,7 @@ class RCTAcquisition(acquisition.Acquisition):
 				continue
 			else:
 				retries = 0			
-			print '============ Craig stuff done ============'
-
+		
 			self.logger.info("result matrix= "+str(numpy.asarray(result*100, dtype=numpy.int8).ravel()))
 			self.logger.info( "Inter Matrix: "+libCVwrapper.affineToText(result) )
 

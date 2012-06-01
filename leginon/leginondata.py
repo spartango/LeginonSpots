@@ -705,6 +705,8 @@ class AcquisitionImageData(PresetImageData):
 			('tilt series', TiltSeriesData),
 			('version', int),
 			('tiltnumber', int),
+			('spot_x', int),
+			('spot_y', int),
 		)
 	typemap = classmethod(typemap)
 
@@ -2027,6 +2029,33 @@ class RCTAcquisitionSettingsData(AcquisitionSettingsData):
 			('lowfilt', float),
 			('drift threshold', float),
 			('drift preset', str),
+		)
+	typemap = classmethod(typemap)
+
+class SpotScanAcquisitionSettingsData(AcquisitionSettingsData):
+	def typemap(cls):
+		return AcquisitionSettingsData.typemap() + (
+			('spot size', int),
+			('spot spacing', float),
+			('spot count', int),
+		)
+	typemap = classmethod(typemap)
+
+class RCTSpotAcquisitionSettingsData(AcquisitionSettingsData):
+	def typemap(cls):
+		return AcquisitionSettingsData.typemap() + (
+			('tilts', str),
+			('stepsize', float),
+			('pause', float),
+			('minsize', float),
+			('maxsize', float),
+			('medfilt', int),
+			('lowfilt', float),
+			('drift threshold', float),
+			('drift preset', str),
+			('spot size', int),
+			('spot spacing', float),
+			('spot count', int),
 		)
 	typemap = classmethod(typemap)
 
