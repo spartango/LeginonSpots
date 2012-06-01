@@ -19,16 +19,16 @@ pi = numpy.pi
 
 #====================
 def setImageFilename(imagedata, tiltnumber=None, spot_x=None, spot_y=None):
-		acquisition.setImageFilename(imagedata)
-		if tiltnumber is None:
-			tiltnumber = imagedata['tiltnumber']
-		if tiltnumber is not None:
-			imagedata['filename'] = imagedata['filename'] + '_%02d' % (tiltnumber,)
-		if spot_x is None or spot_y is None:
-            spot_x = imagedata['spot_x']
-            spot_y = imagedata['spot_y']
+	acquisition.setImageFilename(imagedata)
+	if tiltnumber is None:
+		tiltnumber = imagedata['tiltnumber']
+	if tiltnumber is not None:
+		imagedata['filename'] = imagedata['filename'] + '_%02d' % (tiltnumber,)
+	if spot_x is None or spot_y is None:
+		spot_x = imagedata['spot_x']
+		spot_y = imagedata['spot_y']
         if spot_x is not None and spot_y is not None:
-            imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
+		imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
 
 #====================
 def radians(degrees):
