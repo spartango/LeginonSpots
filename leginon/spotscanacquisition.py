@@ -130,7 +130,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
                     
                     # Check that coordinates are in frame
                     if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
-                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata, spot_x=point_x, spot_x=point_y)
+                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata, spot_x=point_x, spot_y=point_y)
                         subtarget['delta row']    = point_x
                         subtarget['delta column'] = point_y
 
