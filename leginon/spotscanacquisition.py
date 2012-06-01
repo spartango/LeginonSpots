@@ -33,7 +33,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
             spot_y = imagedata['spot_y']
         if spot_x is not None and spot_y is not None:
             imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
-	self.logger.info('Filename -> %s' % imagedata['filename'])
+    self.logger.info('Filename -> %s' % imagedata['filename'])
 
     # Utilities
     def targetPoint(self, target):
@@ -116,11 +116,11 @@ class SpotScanAcquisition(acquisition.Acquisition):
             center_x, center_y = self.targetPoint(targetdata)
 
         #   Corner points
-            start_x = center_x - (spotcount/2) * spotspacing
-            start_y = center_y - (spotcount/2) * spotspacing
+            start_x = (spotcount/2) * spotspacing
+            start_y = (spotcount/2) * spotspacing
 
-            end_x = center_x + (spotcount/2) * spotspacing
-            end_y = center_y + (spotcount/2) * spotspacing
+            end_x = (spotcount/2) * spotspacing
+            end_y = (spotcount/2) * spotspacing
 
             self.logger.info(('Subtargets for %d, %d' % (center_x, center_y)))
             self.logger.info(('Interval: %d, %d  -> %d, %d' % (start_x, start_y, end_x, end_y)))
@@ -129,51 +129,40 @@ class SpotScanAcquisition(acquisition.Acquisition):
             for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
-                    # Check that coordinates are in frame
-                    if True:
-                        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
-			subtarget['spot_x'] 	  = point_x
-			subtarget['spot_y']       = point_y
-                        subtarget['delta row']    = point_x
-                        subtarget['delta column'] = point_y
+                    subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
+                    subtarget['spot_x'] = point_x
+                    subtarget['spot_y'] = point_y
 
-                        self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
+                    self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
 
-                        if subtarget is not None and subtarget['type'] != 'simulated' and self.settings['adjust for transform'] != 'no':
-                            if self.settings['drift between'] and self.goodnumber > 0:
-                                self.declareDrift('between targets')
-                            targetonimage = subtarget['delta column'],subtarget['delta row']
-                            subtarget = self.adjustTargetForTransform(subtarget)
-                            self.logger.info('target adjusted by (%.1f,%.1f) (column, row)' % (subtarget['delta column']-targetonimage[0],subtarget['delta row']-targetonimage[1]))
-                        
-                        offset = {'x':self.settings['target offset col'],'y':self.settings['target offset row']}
-                        if offset['x'] or offset['y']:
-                            subtarget = self.makeTransformTarget(subtarget,offset)
-                        ### determine how to move to target
-                        try:
-                            emtarget = self.targetToEMTargetData(subtarget)
-                        except acquisition.InvalidStagePosition:
-                            return 'invalid'
+                    # Shift the target
+                    target_offset = {'x': point_x, 'y': point_y}
+                    subtarget = self.makeTransformTarget(subtarget, target_offset)
+                    
+                    offset = {'x':self.settings['target offset col'],'y':self.settings['target offset row']}
+                    if offset['x'] or offset['y']:
+                        subtarget = self.makeTransformTarget(subtarget,offset)
+                    ### determine how to move to target
+                    try:
+                        emtarget = self.targetToEMTargetData(subtarget)
+                    except acquisition.InvalidStagePosition:
+                        return 'invalid'
 
-                        presetdata = self.presetsclient.getPresetByName(newpresetname)
+                    presetdata = self.presetsclient.getPresetByName(newpresetname)
+                    
+                    ### acquire film or CCD
+                    self.startTimer('acquire')
+                    # Load up the preset and acquire
+                    ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
+                    self.stopTimer('acquire')
 
-                        # Force the spot size change we want
-			#old_spotsize = presetdata['spot size']
-                        #presetdata['spot size'] = spotsize
-
-                        ### acquire film or CCD
-                        self.startTimer('acquire')
-                        ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
-                        self.stopTimer('acquire')
-			#presetdata['spot size'] = old_spotsize
-
-                        # in these cases, return immediately
-                        if ret in ('aborted', 'repeat'):
-                            self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
-                            # Need to exit here completely, no more rastering
-                            return ret
-                        if ret == 'repeat':
-                            return repeat
+                    # in these cases, return immediately
+                    if ret in ('aborted', 'repeat'):
+                        self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
+                        # Need to exit here completely, no more rastering
+                        return ret
+                    if ret == 'repeat':
+                        return repeat
 
         self.reportStatus('processing', 'Processing complete')
 
