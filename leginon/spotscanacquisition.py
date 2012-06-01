@@ -130,8 +130,10 @@ class SpotScanAcquisition(acquisition.Acquisition):
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
                     subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
-                    subtarget['image']['spot_x'] = point_x
-                    subtarget['image']['spot_y'] = point_y
+                    simagedata = subtarget['image']
+                    simagedata['spot_x'] = point_x
+                    simagedata['spot_y'] = point_y
+                    
                     subtarget['spot_x'] = point_x
                     subtarget['spot_y'] = point_y
                     
