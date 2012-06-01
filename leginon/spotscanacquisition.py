@@ -33,6 +33,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
             spot_y = imagedata['spot_y']
         if spot_x is not None and spot_y is not None:
             imagedata['filename'] = imagedata['filename'] + '_%02d_%02d' % (spot_x, spot_y, )
+	self.logger.info('Filename -> %s' % imagedata['filename'])
 
     # Utilities
     def targetPoint(self, target):
@@ -157,12 +158,14 @@ class SpotScanAcquisition(acquisition.Acquisition):
                         presetdata = self.presetsclient.getPresetByName(newpresetname)
 
                         # Force the spot size change we want
-                        self.instrument.tem.SpotSize = spotsize
+			#old_spotsize = presetdata['spot size']
+                        #presetdata['spot size'] = spotsize
 
                         ### acquire film or CCD
                         self.startTimer('acquire')
                         ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
                         self.stopTimer('acquire')
+			#presetdata['spot size'] = old_spotsize
 
                         # in these cases, return immediately
                         if ret in ('aborted', 'repeat'):
