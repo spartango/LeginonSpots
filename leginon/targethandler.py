@@ -199,7 +199,7 @@ class TargetHandler(object):
 		zerostage = {'x':0.0,'y':0.0}
 		self.instrument.tem.setStagePosition(zerostage)
 		stageposition = self.instrument.tem.getStagePosition()
-		self.logger.info('return x,y, and alhpa tilt to %.1f um,%.1f um,%.1f deg' % (stageposition['x']*1e6,stageposition['y'],stageposition['a']))
+		self.logger.info('return x,y, and alpha tilt to %.1f um,%.1f um,%.1f deg' % (stageposition['x']*1e6,stageposition['y'],stageposition['a']))
 
 	def queueStatus(self, queuedata):
 		active = self.getListsInQueue(queuedata)
@@ -329,7 +329,11 @@ class TargetHandler(object):
 
 	def newSimulatedTarget(self, preset=None,grid=None):
 		## current state of TEM, but use preset
-		scopedata = self.instrument.getData(leginondata.ScopeEMData)
+		try:
+			scopedata = self.instrument.getData(leginondata.ScopeEMData)
+		except Exception, e:
+			self.logger.error('getting scopedata failed: %s' % (e))
+			raise
 		scopedata.friendly_update(preset)
 		lastnumber = self.lastTargetNumber(session=self.session, type='simulated')
 		nextnumber = lastnumber + 1

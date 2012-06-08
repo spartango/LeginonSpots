@@ -16,10 +16,11 @@ import scipy.ndimage
 import gui.wx.Corrector
 import instrument
 import sys
-from pyami import arraystats, imagefun, mrc
+from pyami import arraystats, imagefun, mrc, ccd
 import polygon
 import time
 import os
+import cameraclient
 
 class Corrector(imagewatcher.ImageWatcher):
 	'''
@@ -44,8 +45,9 @@ class Corrector(imagewatcher.ImageWatcher):
 		'despike threshold': 3.5,
 		'clip min': 0,
 		'clip max': 2**16,
-		'camera settings': None,
+		'camera settings': cameraclient.default_settings,
 		'combine': 'average',
+		'store series': False,
 	}
 	eventinputs = imagewatcher.ImageWatcher.eventinputs + [event.AcquisitionImagePublishEvent]
 	eventoutputs = imagewatcher.ImageWatcher.eventoutputs + [event.DarkImagePublishEvent, event.BrightImagePublishEvent]
@@ -83,17 +85,30 @@ class Corrector(imagewatcher.ImageWatcher):
 		plan = self.retrieveCorrectorPlan(cameradata)
 		return plan
 
+	def changeScreenPosition(self,state):
+		try:
+			self.instrument.tem.MainScreenPosition = state
+			time.sleep(2)
+			self.logger.info('screen %s' % state)
+		except:
+			self.logger.info('screen %s failed (may be unsupported)' % state)
+
 	def acquireDark(self, channels):
+		cameraname = self.instrument.getCCDCameraName()
+		if cameraname == 'DE12':
+			self.changeScreenPosition('down')
 		for channel in channels:
 			try:
 				imagedata = self.acquireReference(type='dark', channel=channel)
 			except Exception, e:
 				raise
-				self.logger.exception('Cannot acquire dark reference: %s' % e)
+				self.logger.exception('Cannot acquire dark reference: %s' % (e,))
 			else:
 				self.displayImage(imagedata)
 				self.currentimage = imagedata
 				self.beep()
+		if cameraname == 'DE12':
+			self.changeScreenPosition('up')
 		self.panel.acquisitionDone()
 
 	def acquireBright(self, channels):
@@ -102,7 +117,7 @@ class Corrector(imagewatcher.ImageWatcher):
 				imagedata = self.acquireReference(type='bright', channel=channel)
 			except Exception, e:
 				raise
-				self.logger.exception('Cannot acquire bright reference: %s' % e)
+				self.logger.exception('Cannot acquire bright reference: %s' % (e,))
 			else:
 				self.displayImage(imagedata)
 				self.currentimage = imagedata
@@ -120,9 +135,8 @@ class Corrector(imagewatcher.ImageWatcher):
 			self.stopTimer('get image')
 		except Exception, e:
                         raise
-			self.logger.exception('Raw acquisition failed: %s' % e)
+			self.logger.exception('Raw acquisition failed: %s' % (e,))
 		else:
-			self.maskimg = numpy.zeros(image.shape)
 			self.displayImage(image)
 			self.currentimage = image
 		self.panel.acquisitionDone()
@@ -155,13 +169,8 @@ class Corrector(imagewatcher.ImageWatcher):
 		self.setStatus('processing')
 		self.logger.info('load channel %s %s image' % (channel, reftype))
 
-		if reftype != 'dark-subtracted':
-			imdata = self.retrieveCorrectorImageFromSettings(reftype, channel)
-			imarray = imdata['image']
-		else:
-			brightdata = self.retrieveCorrectorImageFromSettings('bright', channel)
-			darkdata = self.retrieveCorrectorImageFromSettings('dark', channel)
-			imarray = brightdata['image'] - darkdata['image']
+		imdata = self.retrieveCorrectorImageFromSettings(reftype, channel)
+		imarray = imdata['image']
 		self.displayImage(imarray)
 		self.currentimage = imarray
 		self.beep()
@@ -174,6 +183,59 @@ class Corrector(imagewatcher.ImageWatcher):
 			image = self.instrument.ccdcamera.Image
 			series.append(image)
 		return series
+
+	def acquireSeriesAverage(self, n, type, channel):
+		for i in range(n):
+			self.logger.info('Acquiring reference image (%s of %s)' % (i+1, n))
+			try:
+				imagedata = self.acquireCameraImageData()
+			except Exception, e:
+				self.logger.error('Error acquiring image: %s' % e)
+				raise
+			if self.settings['store series']:
+				self.storeCorrectorImageData(imagedata, type, channel)
+			imagearray = imagedata['image']
+			if i == 0:
+				avg = numpy.asarray(imagearray, numpy.float32)
+			else:
+				delta = imagearray - avg
+				avg = avg + delta / (i+1)
+		## final image based on contents of last image in series
+		finaldata = leginondata.CameraImageData(initializer=imagedata)
+		finaldata['image'] = avg
+		finaldata = self.storeCorrectorImageData(finaldata, type, channel)
+		return finaldata
+
+	def acquireSeriesMedian(self, n, type, channel):
+		series = []
+		for i in range(n):
+			self.logger.info('Acquiring reference image (%s of %s)' % (i+1, n))
+			try:
+				imagedata = self.acquireCameraImageData()
+			except Exception, e:
+				self.logger.error('Error acquiring image: %s' % e)
+				raise
+			if self.settings['store series']:
+				self.storeCorrectorImageData(imagedata, type, channel)
+			imagearray = imagedata['image']
+			series.append(imagearray)
+		## calc median
+		med = imagefun.medianSeries(series)
+		med = numpy.asarray(med, numpy.float32)
+
+		## final image based on contents of last image in series
+		finaldata = leginondata.CameraImageData(initializer=imagedata)
+		finaldata['image'] = med
+		finaldata = self.storeCorrectorImageData(finaldata, type, channel)
+		return finaldata
+
+	def insert(self, x):
+		self.__n += 1
+		if self.__n == 1:
+			self.__mean = numpy.asarray(x, numpy.float32)
+		else:
+			delta = x - self.__mean
+			self.__mean = self.__mean + delta / self.__n
 
 	def acquireReference(self, type, channel):
 		try:
@@ -190,10 +252,11 @@ class Corrector(imagewatcher.ImageWatcher):
 				typekey = 'bright'
 				self.logger.info('Acquiring bright references...')
 		except Exception, e:
-			self.logger.error('Reference acquisition failed: %s' % e)
+			self.logger.error('Reference acquisition failed: %s' % (e,))
 			self.instrument.ccdcamera.ExposureType = 'normal'
 			return None
 
+		'''
 		## doing this before acquireSeries because of a bug where
 		## something interrupts this method before it completes
 		scopedata = self.instrument.getData(leginondata.ScopeEMData)
@@ -202,7 +265,7 @@ class Corrector(imagewatcher.ImageWatcher):
 		try:
 			series = self.acquireSeries(self.settings['n average'])
 		except Exception, e:
-			self.logger.error('Reference acquisition failed: %s' % e)
+			self.logger.error('Reference acquisition failed: %s' % (e,))
 			self.instrument.ccdcamera.ExposureType = 'normal'
 			return None
 
@@ -220,6 +283,16 @@ class Corrector(imagewatcher.ImageWatcher):
 		ref = numpy.asarray(ref, numpy.float32)
 
 		refimagedata = self.storeCorrectorImageData(ref, typekey, scopedata, cameradata, channel)
+		'''
+
+		combine = self.settings['combine']
+		n = self.settings['n average']
+		if combine == 'average':
+			refimagedata = self.acquireSeriesAverage(n, type, channel)
+		elif combine == 'median':
+			refimagedata = self.acquireSeriesMedian(n, type, channel)
+		refarray = refimagedata['image']
+
 		if refimagedata is not None:
 			self.logger.info('Got reference image, calculating normalization')
 			self.calc_norm(refimagedata)
@@ -227,12 +300,12 @@ class Corrector(imagewatcher.ImageWatcher):
 		try:
 			self.instrument.ccdcamera.ExposureType = exposuretype
 		except Exception, e:
-			self.logger.error('Reference acquisition failed: %s' % e)
+			self.logger.error('Reference acquisition failed: %s' % (e,))
 			self.instrument.ccdcamera.ExposureType = 'normal'
 			return None
 
-		self.maskimg = numpy.zeros(ref.shape)
-		return ref
+		self.maskimg = numpy.zeros(refarray.shape)
+		return refarray
 
 	def calc_norm(self, refdata):
 		scopedata = refdata['scope']
@@ -273,7 +346,9 @@ class Corrector(imagewatcher.ImageWatcher):
 		# so make sure there are no zeros in norm
 		normarray = numpy.clip(normarray, 0.001, sys.maxint)
 		normarray = normavg / normarray
-		self.storeCorrectorImageData(normarray, 'norm', scopedata, cameradata, channel)
+		normdata = leginondata.CameraImageData(initializer=refdata)
+		normdata['image'] = normarray
+		self.storeCorrectorImageData(normdata, 'norm', channel)
 
 	def uiAutoAcquireReferences(self):
 		binning = self.autobinning.get()
@@ -325,41 +400,39 @@ class Corrector(imagewatcher.ImageWatcher):
 		if i == tries-1:
 			self.logger.info('Failed to find target mean after %s tries' % (tries,))
 
+	def extrema_xy(self, a):
+		ext = scipy.ndimage.extrema(a)
+		newext = ext[0], ext[1], (ext[2][1], ext[2][0]), (ext[3][1], ext[3][0])
+		return newext 
+
 	def onAddPoints(self):
 		imageshown = self.currentimage
-		plan = self.retrieveCorrectorPlanFromSettings()
-		if plan is not None:
-			self.fixBadPixels(imageshown, plan)
 		imagemean = imageshown.mean()
+		plan = self.retrieveCorrectorPlanFromSettings()
 		badpixelcount = len(plan['pixels'])
 		newbadpixels = plan['pixels']
-		# Note: Must use numpy min, max function here because arraystats remembers the
-		# old value.  If the latter is used, this function only work once per
-		# image displayed
-		extrema = imageshown.min(),imageshown.max()
-		# add points only on max or min depending on how far they are from mean
-		usemax = extrema[1] - imagemean > imagemean - extrema[0]
-		if usemax:
-			indices = [1]
-		else:
-			indices = [0]
-		# also remove values less than or equal to zero
-		if extrema[0] <= 0.0 and usemax:
-			indices.append(0)
-		for i in indices:
-			currentvalue = extrema[i]
-			coordinates = numpy.argwhere(imageshown == currentvalue)
-			coordinates = coordinates.tolist()
-			for bad in coordinates:
-				# convert to tuple to be consistent with plan
-				yx = bad[1], bad[0]
-				if yx not in newbadpixels:
-					newbadpixels.append(yx)
-					self.logger.info("added bad pixel point at (%d,%d) at %.1f" % (bad[0], bad[1],1.0*currentvalue))
-					imageshown[yx]=imagemean
+		## remove all pixels that have the two most extreme values
+		while  len(newbadpixels) <= badpixelcount+2 :
+			extrema = self.extrema_xy(imageshown)
+			# add points only on max or min depending on how far they are from mean
+			usemax = extrema[1] - imagemean > imagemean - extrema[0]
+			if usemax:
+				i = 3
+			else:
+				i = 2
+			currentvalue = extrema[i-2]
+			newextrema = extrema
+
+			while newextrema[i-2] == currentvalue:
+				if newextrema[i] not in newbadpixels:
+					newbadpixels.append(newextrema[i])
+					self.logger.info("added bad pixel point at (%d,%d)" % (newextrema[i]))
+				yx = newextrema[i][1], newextrema[i][0]
+				imageshown[yx]=imagemean
+				newextrema=self.extrema_xy(imageshown)
+
 		plan['pixels'] = newbadpixels
 		self.displayImage(imageshown)
-		self.currentimage = imageshown
 		self.storeCorrectorPlan(plan)
 		self.panel.setPlan(plan)
 

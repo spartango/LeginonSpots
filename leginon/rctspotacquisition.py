@@ -64,11 +64,11 @@ class RCTSpotAcquisition(rctacquisition.RCTAcquisition):
             center_x, center_y = targetPoint(target)
 
         #   Corner points
-            start_x = center_x - (spotcount/2) * spotspacing
-            start_y = center_y - (spotcount/2) * spotspacing
+            start_x = -(spotcount/2) * spotspacing
+            start_y = -(spotcount/2) * spotspacing
 
-            end_x = center_x + (spotcount/2) * spotspacing
-            end_y = center_y + (spotcount/2) * spotspacing
+            end_x = (spotcount/2) * spotspacing
+            end_y = (spotcount/2) * spotspacing
 
             self.logger.info(('Subtargets for %d, %d' % (center_x, center_y)))
             self.logger.info(('Interval: %d, %d  -> %d, %d' % (start_x, start_y, end_x, end_y)))
@@ -77,15 +77,21 @@ class RCTSpotAcquisition(rctacquisition.RCTAcquisition):
             for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
                 for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
                     
-                    # Check that coordinates are in frame
-                    if point_x > 0.0 and point_x < bound_x and point_y > 0.0 and point_y < bound_y:
-                        sub_target = leginondata.AcquisitionImageTargetData(initializer=target, spot_x=point_x, spot_y=point_y)
-                        sub_target['delta row']    = point_x
-                        sub_target['delta column'] = point_y
+                    subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
+                    
+                    self.spotX = point_x
+                    self.spotY = point_y
 
-                        self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
+                    subtarget['spot_x'] = point_x
+                    subtarget['spot_y'] = point_y
+                    
+                    self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
 
-                        new_targets.append(sub_target)
+                    # Shift the target
+                    target_offset = {'x': point_x, 'y': point_y}
+                    subtarget = self.makeTransformTarget(subtarget, target_offset)
+
+                    new_targets.append(sub_target)
 
         spottargetlist = self.newTargetList(image=targets.image)
 
@@ -96,9 +102,6 @@ class RCTSpotAcquisition(rctacquisition.RCTAcquisition):
             spottarget['image'] = targets.image
             spottarget['scope'] = targets.image['scope']
             self.publish(spottarget, database=True)
-
-        # set the spot size
-        self.instrument.tem.SpotSize = spotsize
 
         # Call processTargetList
         rctacquisition.RCTAcquisition.processTargetList(spottargetlist)

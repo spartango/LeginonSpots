@@ -155,13 +155,13 @@ class PresetsClient(object):
 		self.currentpreset = ievent['preset']
 		name = self.currentpreset['name']
 
-		# if waiting for this event, then set the threading event
-		if name in self.pchanged:
-			self.pchanged[name].set()
-
 		# update node's instruments to match new preset
 		self.node.instrument.setTEM(self.currentpreset['tem']['name'])
 		self.node.instrument.setCCDCamera(self.currentpreset['ccdcamera']['name'])
+
+		# if waiting for this event, then set the threading event
+		if name in self.pchanged:
+			self.pchanged[name].set()
 
 		self.node.confirmEvent(ievent)
 
@@ -210,6 +210,16 @@ class PresetsClient(object):
 		cam = leginondata.CameraEMData()
 		cam.friendly_update(preset)
 		return self.node.correctorImageExists(type, scope, cam, channel)
+
+	def getHighestMagPresetName(self):
+		session = self.node.session
+		presets = self.getPresetsFromDB(session)
+		names = presets.keys()
+		highest_mag_preset_name = names[0]
+		for name in names:
+			if presets[highest_mag_preset_name]['magnification'] < presets[name]['magnification']:
+				highest_mag_preset_name = name
+		return highest_mag_preset_name
 
 class PresetsManager(node.Node):
 	panelclass = gui.wx.PresetsManager.Panel
@@ -1118,7 +1128,6 @@ class PresetsManager(node.Node):
 					self.updatePreset(sim['name'], {'dose': simdose}, updatedose=False)
 
 	def getSimilarLook(self,camname,magdict):
-		imagelength = self.settings['smallsize']
 		if len(magdict) != 2:
 			self.logger.warning('Error calculating similar look camera binning')
 			return None, None
@@ -1134,6 +1143,8 @@ class PresetsManager(node.Node):
 		# This restrict the image to imagelength in x only
 		# and works only for camera dimension at power of 2 
 		fullcamdim = min(self.instrument.camerasizes[camname]['x'],self.instrument.camerasizes[camname]['y'])
+		# smallsize may actually be too big for this camera
+		imagelength = min(self.settings['smallsize'], fullcamdim)
 
 		#assume highmag imag is binning of full camera to imagelength
 		maxbin = fullcamdim / imagelength
@@ -1358,15 +1369,17 @@ class PresetsManager(node.Node):
 			fakescope2.friendly_update(newpreset)
 			fakecam2 = leginondata.CameraEMData()
 			fakecam2.friendly_update(newpreset)
-			tem = newpreset['tem']
-			ccdcamera = newpreset['ccdcamera']
+			new_tem = newpreset['tem']
+			new_ccdcamera = newpreset['ccdcamera']
+			old_tem = oldpreset['tem']
+			old_ccdcamera = oldpreset['ccdcamera']
 			ht = self.instrument.tem.HighTension
 			try:
 				pixelshift1 = self.calclients['image'].itransform(myimage, fakescope1, fakecam1)
 				pixrow = pixelshift1['row'] * oldpreset['binning']['y']
 				pixcol = pixelshift1['col'] * oldpreset['binning']['x']
 				pixvect1 = numpy.array((pixrow, pixcol))
-				pixvect2 = self.calclients['image'].pixelToPixel(tem,ccdcamera,ht,oldpreset['magnification'],newpreset['magnification'],pixvect1)
+				pixvect2 = self.calclients['image'].pixelToPixel(old_tem,old_ccdcamera,new_tem, new_ccdcamera, ht,oldpreset['magnification'],newpreset['magnification'],pixvect1)
 				pixelshift2 = {'row':pixvect2[0] / newpreset['binning']['y'],'col':pixvect2[1] / newpreset['binning']['x']}
 				newscope = self.calclients['image'].transform(pixelshift2, fakescope2, fakecam2)
 				myimage = newscope['image shift']

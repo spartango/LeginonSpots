@@ -28,7 +28,10 @@ class UserData(Data):
 			('username', str),
 			('firstname', str),
 			('lastname', str),
-			('group', GroupData)
+			('password', str),
+			('email', str),
+			('group', GroupData),
+			('noleginon', bool),
 		)
 	typemap = classmethod(typemap)
 
@@ -56,6 +59,13 @@ class MainScreenScaleData(Data):
 		return Data.typemap() + (
 			('instrument', InstrumentData),
 			('scale', float),
+		)
+	typemap = classmethod(typemap)
+
+class ReferenceSessionData(Data):
+	def typemap(cls):
+		return Data.typemap() + (
+			('session', SessionData),
 		)
 	typemap = classmethod(typemap)
 
@@ -155,6 +165,7 @@ camera_params = (
 	('offset', dict),
 	('exposure time', float),
 	('exposure type', str),
+	('exposure timestamp', float),
 	('inserted', bool),
 	('dump', bool),
 	('pixel size', dict),
@@ -162,6 +173,9 @@ camera_params = (
 	('energy filter', bool),
 	('energy filter width', float),
 	('nframes', int),
+	('save frames', bool),
+	('frames name', str),
+	('use frames', tuple),
 )
 
 class ScopeEMData(EMData):
@@ -215,20 +229,6 @@ class DriftMonitorResultData(InSessionData):
 		return InSessionData.typemap() + (
 			('status', str),
 			('final', DriftData),
-		)
-	typemap = classmethod(typemap)
-
-class CameraConfigData(InSessionData):
-	def typemap(cls):
-		return InSessionData.typemap() + (
-			('dimension', dict),
-			('binning', dict),
-			('offset', dict),
-			('exposure time', float),
-			('exposure type', str),
-			('correct', int),
-			('auto square', int),
-			('auto offset', int),
 		)
 	typemap = classmethod(typemap)
 
@@ -478,6 +478,8 @@ class PresetData(InSessionData):
 			('energy filter width', float),
 			('pre exposure', float),
 			('skip', bool),
+			('save frames', bool),
+			('use frames', tuple),
 		)
 	typemap = classmethod(typemap)
 
@@ -579,8 +581,11 @@ class CameraImageData(ImageData):
 			('scope', ScopeEMData),
 			('camera', CameraEMData),
 			('correction channel', int),
+			('channel', int),
 			('dark', DarkImageData),
+			('bright', BrightImageData),
 			('norm', NormImageData),
+			('use frames', tuple),
 		)
 	typemap = classmethod(typemap)
 
@@ -609,27 +614,8 @@ class CameraImageData(ImageData):
 		psizey = binningy * psize * 1e10
 		weakattr.set(self['image'], 'pixelsize', {'x':psizex,'y':psizey})
 
-class CameraImageStatsData(InSessionData):
-	def typemap(cls):
-		return InSessionData.typemap() + (
-			('image', CameraImageData),
-			('min', float),
-			('max', float),
-			('mean', float),
-			('stdev', float),
-		)
-	typemap = classmethod(typemap)
-
-## the camstate key is redundant (it's a subset of 'camera')
-## but for now it helps to query the same way we used to
-class CorrectorImageData(ImageData):
-	def typemap(cls):
-		return ImageData.typemap() + (
-			('scope', ScopeEMData),
-			('camera', CameraEMData),
-			('channel', int),
-		)
-	typemap = classmethod(typemap)
+class CorrectorImageData(CameraImageData):
+	pass
 
 class DarkImageData(CorrectorImageData):
 	pass
@@ -679,26 +665,10 @@ class StageLocationData(InSessionData):
 		)
 	typemap = classmethod(typemap)
 
-class PresetImageData(CameraImageData):
-	'''
-	If an image was acquire using a certain preset, use this class
-	to include the preset with it.
-	'''
+class AcquisitionImageData(CameraImageData):
 	def typemap(cls):
 		return CameraImageData.typemap() + (
 			('preset', PresetData),
-		)
-	typemap = classmethod(typemap)
-
-class PresetReferenceImageData(PresetImageData):
-	'''
-	This is a reference image for getting stats at different presets
-	'''
-	pass
-
-class AcquisitionImageData(PresetImageData):
-	def typemap(cls):
-		return PresetImageData.typemap() + (
 			('target', AcquisitionImageTargetData),
 			('emtarget', EMTargetData),
 			('grid', GridData),
@@ -745,10 +715,6 @@ class ProcessedAcquisitionImageData(ImageData):
 
 class AcquisitionFFTData(ProcessedAcquisitionImageData):
 	'''Power Spectrum of AcquisitionImageData'''
-	pass
-
-class ScaledAcquisitionImageData(ImageData):
-	'''Small version of AcquisitionImageData'''
 	pass
 
 class ImageListData(InSessionData):
@@ -818,6 +784,8 @@ class AcquisitionImageTargetData(ImageTargetData):
 			## exposures on this target.  For now, this is just to
 			## keep track of when we have done the melt ice thing.
 			('pre_exposure', bool),
+			('spot_x', int),
+			('spot_y', int),
 			('fromtarget', AcquisitionImageTargetData),
 		)
 	typemap = classmethod(typemap)
@@ -1122,6 +1090,8 @@ class CameraSettingsData(Data):
 			('offset', dict),
 			('binning', dict),
 			('exposure time', float),
+			('save frames', bool),
+			('use frames', tuple),
 		)
 	typemap = classmethod(typemap)
 
@@ -1174,6 +1144,7 @@ class CorrectorSettingsData(SettingsData):
 			('combine', str),
 			('clip min', float),
 			('clip max', float),
+			('store series', bool),
 		)
 	typemap = classmethod(typemap)
 
@@ -1194,6 +1165,17 @@ class NavigatorSettingsData(SettingsData):
 			('cycle after', bool),
 			('final image shift', bool),
 			('background readout', bool),
+		)
+	typemap = classmethod(typemap)
+
+class BakerSettingsData(SettingsData):
+	def typemap(cls):
+		return SettingsData.typemap() + (
+			('bypass', bool),
+			('preset', str),
+			('total bake time', float),
+			('manual aperture', bool),
+			('emission off', bool),
 		)
 	typemap = classmethod(typemap)
 
@@ -1270,6 +1252,7 @@ class MatlabTargetFinderSettingsData(TargetFinderSettingsData):
 		return TargetFinderSettingsData.typemap() + (
 			('test image', str),
 			('module path', str),
+			('parametergui path', str),
 		)
 	typemap = classmethod(typemap)
 
@@ -1411,6 +1394,21 @@ class RasterFinderSettingsData(TargetFinderSettingsData):
 		)
 	typemap = classmethod(typemap)
 
+# New node from William Nicholson:
+class RasterFCFinderSettingsData(RasterFinderSettingsData):
+	def typemap(cls):
+		return RasterFinderSettingsData.typemap() + (
+		('focus center x', float),
+		('focus center y', float),
+		('focus radius', float),
+		('focus box size', float),
+		('focus min mean', float),
+		('focus max mean', float),
+		('focus min std', float),
+		('focus max std', float),
+		)
+	typemap = classmethod(typemap)
+
 class PolyFinderSettingsData(TargetFinderSettingsData):
 	def typemap(cls):
 		return TargetFinderSettingsData.typemap() + (
@@ -1518,6 +1516,7 @@ class TargetWatcherSettingsData(SettingsData):
 	def typemap(cls):
 		return SettingsData.typemap() + (
 			('process target type', str),
+			('park after list', bool),
 		)
 	typemap = classmethod(typemap)
 
@@ -1525,6 +1524,7 @@ class AcquisitionSettingsData(TargetWatcherSettingsData):
 	def typemap(cls):
 		return TargetWatcherSettingsData.typemap() + (
 			('pause time', float),
+			('pause between time', float),
 			('move type', str),
 			('preset order', list),
 			('correct image', bool),
@@ -1556,6 +1556,7 @@ class AcquisitionSettingsData(TargetWatcherSettingsData):
 			('target offset row', int),
 			('target offset col', int),
 			('correct image shift coma', bool),
+			('park after target', bool),
 		)
 	typemap = classmethod(typemap)
 
@@ -1652,6 +1653,8 @@ class AutoExposureSettingsData(AcquisitionSettingsData):
 		return AcquisitionSettingsData.typemap() + (
 			('mean intensity', float),
 			('mean intensity tolerance', float),
+			('maximum exposure time', float),
+			('maximum attempts', int),
 		)
 	typemap = classmethod(typemap)
 

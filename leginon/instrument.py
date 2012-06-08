@@ -92,10 +92,13 @@ class Proxy(object):
 				return None
 			else:
 				name = self.tem._name
+				cs = 6.3e-3
 				#dbtype = self.tem.DatabaseType
 		else:
 			if name not in self.tems:
 				raise RuntimeError('no TEM \'%s\' available' % name)
+			else:
+				cs = None
 		instrumentdata = leginondata.InstrumentData()
 		instrumentdata['name'] = name
 		#instrumentdata['type'] = dbtype
@@ -108,7 +111,16 @@ class Proxy(object):
 		## save in DB if not already there
 		if results:
 			dbinstrumentdata = results[0]
+			if dbinstrumentdata['cs'] is None:
+				print 'cs isnt in the instrumentdatabase, FYI'
+				#dbinstrumentdata['cs'] = 6.3e-3	
+				#raise RuntimeError('You must run db schema update script on existing TEMs before using this version of Leginon')
+			elif cs is not None and dbinstrumentdata['cs'] != cs:
+				raise RuntimeError('TEM Cs in instruments.cfg does not match database value. Correct either one to use it in Leginon')
 		else:
+			if cs is None:
+				cs = 6.3e-3
+			instrumentdata['cs'] = cs
 			dbinstrumentdata = instrumentdata
 			dbinstrumentdata.insert()
 		return dbinstrumentdata
@@ -243,10 +255,13 @@ class Proxy(object):
 		for i, key in enumerate(keys):
 			try:
 				if isinstance(results[i], Exception):
-					raise results[i]
+					print 'error in getting data: continuing'
+					#raise results[i]
+				else:
+					instance[key] = results[i]
 			except AttributeError:
+				print 'Attribute error'
 				continue
-			instance[key] = results[i]
 		if 'session' in instance:
 			instance['session'] = self.session
 		if 'tem' in instance:
@@ -333,6 +348,7 @@ parametermapping = (
 	('beam tilt', 'BeamTilt'),
 	('corrected stage position', 'CorrectedStagePosition'),
 	('stage position', 'StagePosition'),
+	('stage speed', 'StageSpeed'),
 	('column pressure', 'ColumnPressure'),
 	('high tension', 'HighTension'),
 	('main screen position', 'MainScreenPosition'),
@@ -369,11 +385,15 @@ parametermapping = (
 	('offset', 'Offset'),
 	('exposure time', 'ExposureTime'),
 	('exposure type', 'ExposureType'),
+	('exposure timestamp', 'ExposureTimestamp'),
 	('inserted', 'Inserted'),
 	('pixel size', 'PixelSize'),
 	('energy filtered', 'EnergyFiltered'),
 	('energy filter', 'EnergyFilter'),
 	('energy filter width', 'EnergyFilterWidth'),
 	('nframes', 'NumberOfFrames'),
+	('save frames', 'SaveRawFrames'),
+	('frames name', 'PreviousRawFramesName'),
+	('use frames', 'UseFrames'),
 )
 

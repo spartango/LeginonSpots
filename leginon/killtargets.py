@@ -6,12 +6,13 @@ if len(sys.argv) != 2:
 	print '%s %s' % (sys.argv[0], 'session_name')
 	sys.exit(1)
 
-from leginon import leginondata
+import leginondata
+db = leginondata.db
 
 # look up session with name given by user
 session_name = sys.argv[1]
-sessionq = leginondata.SessionData(name=session_name)
-sessions = sessionq.query()
+sessiondata = leginondata.SessionData(name=session_name)
+sessions = db.query(sessiondata)
 if not sessions:
 	print 'No session named %s' % (session_name,)
 	print 'asdf'
@@ -30,8 +31,8 @@ if response != 'ok':
 	sys.exit(1)
 
 # find targets in this session
-targetq = leginondata.AcquisitionImageTargetData(session=sessiondata)
-targets = targetq.query()
+targetdata = leginondata.AcquisitionImageTargetData(session=sessiondata)
+targets = db.query(targetdata)
 
 print 'Found %d target records.  Searching for targets not done...' % (len(targets),)
 
@@ -43,7 +44,7 @@ for target in targets:
 	if imref is None:
 		filename = 'None'
 	else:
-		im = imref.dataclass.direct_query(imref.dbid, readimages=False)
+		im = db.direct_query(imref.dataclass, imref.dbid, readimages=False)
 		filename = im['filename']
 	imageid = filename
 	number = target['number']
@@ -91,6 +92,6 @@ if response != 'done':
 for target in notdonedata.values():
 	newtarget = leginondata.AcquisitionImageTargetData(initializer=target)
 	newtarget['status'] = 'done'
-	newtarget.insert()
+	db.insert(newtarget)
 
 print 'marked all as done'
