@@ -83,7 +83,7 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 		# spot size
 		
 		# layout
-		szspotsize = wx.GridBagSizer(3, 3)
+		szspotsize = wx.GridBagSizer(2, 3)
 		
 		# label
 		#label = wx.StaticText(self, -1, 'Spot Size:')
