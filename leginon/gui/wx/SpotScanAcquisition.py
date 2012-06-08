@@ -83,11 +83,10 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 		# spot size
 		
 		# layout
-		szspotsize = wx.GridBagSizer(2, 3)
+		szspotsize = wx.GridBagSizer(3, 3)
 		
 		# label
-		#label = wx.StaticText(self, -1, 'Spot Size:')
-		#szspotsize.Add(label, (0, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+
 
 		label = wx.StaticText(self, -1, 'Spot Spacing:')
 		szspotsize.Add(label, (0, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
@@ -97,7 +96,11 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 
 		label = wx.StaticText(self, -1, 'Spot Count:')
 		szspotsize.Add(label, (1, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
-
+		
+		label = wx.StaticText(self, -1, 'Spot Pattern:')
+		szspotsize.Add(label, (2, 0), (1, 1), wx.ALIGN_CENTER_VERTICAL)
+		# Drop down for patterns
+		self.widgets['spot pattern'] = Choice(self, -1, choices=['square', 'hexagon'])
 
 		# Text box for spotsize
 		#self.widgets['spot size'] = IntEntry(self, -1,
@@ -124,7 +127,8 @@ class ScrolledSettings(leginon.gui.wx.Settings.ScrolledDialog):
 				wx.ALIGN_CENTER_VERTICAL)
 		szspotsize.Add(self.widgets['spot count'], (1, 1), (1, 1),
 				wx.ALIGN_CENTER_VERTICAL)
-		
+		szspotsize.Add(self.widgets['spot pattern'], (2, 1), (1, 1),
+				wx.ALIGN_CENTER_VERTICAL)
 		# preset order
 		presets = self.node.presetsclient.getPresetNames()
 		self.widgets['preset order'] = EditPresetOrder(self, -1)
