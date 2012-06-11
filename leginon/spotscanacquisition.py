@@ -157,7 +157,9 @@ class SpotScanAcquisition(acquisition.Acquisition):
             if spotpattern == 'hexagon':
 
                 # Generate hexagonal pattern
-                for row in (range(1, spotcount) + range(spotcount, 0, -1)):  # 1 2 3 ... N ... 3 2 1 
+                maxspots = 2*spotcount - 1
+                
+                for row in (range(spotcount, maxspots) + range(maxspots, spotcount-1, -1)):  # 1 2 3 ... N ... 3 2 1 
                     point_y = spotspacing * row
                     for col in range(math.floor(abs(row) / -2), math.floor(abs(row) / 2) + 1):
                         offset = 0
