@@ -20,7 +20,8 @@ class SpotScanAcquisition(acquisition.Acquisition):
     defaultsettings.update({
         'spot size':    5,
         'spot spacing': 1.0, 
-        'spot count':   3
+        'spot count':   3,
+        'spot pattern': 'square'
         })
 
     def __init__(self, id, session, managerlocation, **kwargs):
@@ -76,6 +77,39 @@ class SpotScanAcquisition(acquisition.Acquisition):
         self.logger.info('Done with simulated target, status: %s (repeat will not be honored)' % (ret,))
         self.setStatus('idle')
 
+    def acquireSpot(self, targetdata, newpresetname, point_x, point_y):
+        subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
+                        
+        self.spotX = point_x
+        self.spotY = point_y
+
+        subtarget['spot_x'] = point_x
+        subtarget['spot_y'] = point_y
+        
+        self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
+
+        # Shift the target
+        target_offset = {'x': point_x, 'y': point_y}
+        subtarget = self.makeTransformTarget(subtarget, target_offset)
+        
+        offset = {'x':self.settings['target offset col'],'y':self.settings['target offset row']}
+        if offset['x'] or offset['y']:
+            subtarget = self.makeTransformTarget(subtarget,offset)
+        ### determine how to move to target
+        try:
+            emtarget = self.targetToEMTargetData(subtarget)
+        except acquisition.InvalidStagePosition:
+            return 'invalid'
+
+        presetdata = self.presetsclient.getPresetByName(newpresetname)
+
+        ### acquire film or CCD
+        self.startTimer('acquire')
+        # Load up the preset and acquire
+        ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
+        self.stopTimer('acquire')
+        return ret
+
     # Overrides
     def processTargetData(self, targetdata, attempt=None):
         '''
@@ -102,6 +136,7 @@ class SpotScanAcquisition(acquisition.Acquisition):
         spotsize    = self.settings['spot size']
         spotcount   = self.settings['spot count']
         spotspacing = self.settings['spot spacing']
+        spotpattern = self.settings['spot pattern']
 
         for newpresetname in presetnames:
             if self.alreadyAcquired(targetdata, newpresetname):
@@ -113,64 +148,58 @@ class SpotScanAcquisition(acquisition.Acquisition):
                 return
 
             # Generate rastered points
-            # Bounding box from camera frame
-            bound_x, bound_y = self.targetShape(targetdata)
 
-        #   Grab coordinates for the target
+            # Grab coordinates for the target
             center_x, center_y = self.targetPoint(targetdata)
-
-        #   Corner points
-            start_x = -(spotcount/2) * spotspacing
-            start_y = -(spotcount/2) * spotspacing
-
-            end_x = (spotcount/2) * spotspacing
-            end_y = (spotcount/2) * spotspacing
-
             self.logger.info(('Subtargets for %d, %d' % (center_x, center_y)))
-            self.logger.info(('Interval: %d, %d  -> %d, %d' % (start_x, start_y, end_x, end_y)))
-        
-        #   Generate new coordinates around point
-            for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
-                for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
-                    
-                    subtarget = leginondata.AcquisitionImageTargetData(initializer=targetdata)
-                    
-                    self.spotX = point_x
-                    self.spotY = point_y
 
-                    subtarget['spot_x'] = point_x
-                    subtarget['spot_y'] = point_y
-                    
-                    self.logger.info('subtarget -> %d, %d' % (point_x, point_y))
+            # Hexagonal vs Square Pattern
+            if spotpattern == 'hexagon':
 
-                    # Shift the target
-                    target_offset = {'x': point_x, 'y': point_y}
-                    subtarget = self.makeTransformTarget(subtarget, target_offset)
-                    
-                    offset = {'x':self.settings['target offset col'],'y':self.settings['target offset row']}
-                    if offset['x'] or offset['y']:
-                        subtarget = self.makeTransformTarget(subtarget,offset)
-                    ### determine how to move to target
-                    try:
-                        emtarget = self.targetToEMTargetData(subtarget)
-                    except acquisition.InvalidStagePosition:
-                        return 'invalid'
+                # Generate hexagonal pattern
+                maxspots = 2*spotcount - 1
+                
+                for row in (range(spotcount, maxspots) + range(maxspots, spotcount-1, -1)):  # 1 2 3 ... N ... 3 2 1 
+                    point_y = spotspacing * row
+                    for col in range(math.floor(abs(row) / -2), math.floor(abs(row) / 2) + 1):
+                        offset = 0
+                        if row % 2 == 0:
+                            offset = spotspacing / 2
+                        point_x = spotspacing * col + offset
 
-                    presetdata = self.presetsclient.getPresetByName(newpresetname)
+                        ret = self.acquireSpot(targetdata, newpresetname, point_x, point_y)
+                        
+                        if ret in ('aborted', 'repeat'):
+                            self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
+                            # Need to exit here completely, no more rastering
+                            return ret
+                        if ret == 'repeat':
+                            return repeat
 
-                    ### acquire film or CCD
-                    self.startTimer('acquire')
-                    # Load up the preset and acquire
-                    ret = self.acquire(presetdata, emtarget, attempt=attempt, target=subtarget)
-                    self.stopTimer('acquire')
+            else: # Default to square pattern
 
-                    # in these cases, return immediately
-                    if ret in ('aborted', 'repeat'):
-                        self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
-                        # Need to exit here completely, no more rastering
-                        return ret
-                    if ret == 'repeat':
-                        return repeat
+                # Corner points
+                start_x = -(spotcount/2) * spotspacing
+                start_y = -(spotcount/2) * spotspacing
+
+                end_x = (spotcount/2) * spotspacing
+                end_y = (spotcount/2) * spotspacing
+
+                self.logger.info(('Interval: %d, %d  -> %d, %d' % (start_x, start_y, end_x, end_y)))
+            
+                # Generate new coordinates around point
+                for point_x in range(start_x, end_x, spotspacing):# left bound to right bound
+                    for point_y in range(start_y, end_y, spotspacing): # top to bottom bound
+                        
+                        ret = self.acquireSpot(targetdata, newpresetname, point_x, point_y)
+                        
+                        # in these cases, return immediately
+                        if ret in ('aborted', 'repeat'):
+                            self.reportStatus('acquisition', 'Acquisition state is "%s"' % ret)
+                            # Need to exit here completely, no more rastering
+                            return ret
+                        if ret == 'repeat':
+                            return repeat
 
         self.reportStatus('processing', 'Processing complete')
 
